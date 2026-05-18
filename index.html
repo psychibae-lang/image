@@ -82,7 +82,7 @@ tr:last-child td{border-bottom:none;}tr:hover td{background:#fafbff;}
 .cal-day.selected{background:var(--accent);color:#fff;font-weight:700;}
 .cal-day.sun{color:var(--danger);}
 @media(max-width:600px){.nav-tab{padding:9px 10px;font-size:12px;}.pt-card{grid-template-columns:1fr;}.container{padding:10px 8px;}}
-/* 대리처방 테이블 컬럼 폭 */
+/* 대리처방 테이블 */
 #proxyTable th, #proxyTable td { white-space:nowrap; }
 #proxyTable th:nth-child(3), #proxyTable td:nth-child(3) { max-width:120px; white-space:normal; font-size:11px; word-break:keep-all; }
 #proxyTable th:nth-child(2), #proxyTable td:nth-child(2),
@@ -90,14 +90,74 @@ tr:last-child td{border-bottom:none;}tr:hover td{background:#fafbff;}
 #proxyTable th { cursor:pointer; user-select:none; }
 #proxyTable th:hover { background:#e8edf8; }
 
+/* ─── 임상가척도 탭 CSS ─── */
+.clin-nav-item{padding:7px 12px;cursor:pointer;font-size:11px;color:var(--text2);display:flex;align-items:center;gap:6px;transition:all 0.15s;border-left:3px solid transparent;}
+.clin-nav-item:hover{background:var(--surface2);color:var(--text);}
+.clin-nav-item.active{background:rgba(79,142,247,0.1);color:var(--accent);border-left-color:var(--accent);font-weight:500;}
+.clin-nav-badge{margin-left:auto;font-size:9px;background:var(--surface2);padding:2px 5px;border-radius:10px;color:var(--text2);}
+.clin-nav-item.done .clin-nav-badge{background:rgba(62,201,126,0.15);color:var(--success);}
+.clin-scale-panel{display:none;}.clin-scale-panel.active{display:block;}
+.clin-scale-title{font-size:16px;font-weight:700;margin-bottom:2px;color:var(--text);}
+.clin-scale-meta{font-size:11px;color:var(--text2);margin-bottom:14px;}
+.clin-item-card{background:#fff;border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden;transition:border-color 0.2s;}
+.clin-item-card:hover{border-color:#3a4570;}
+.clin-item-card.scored{border-color:rgba(79,142,247,0.4);}
+.clin-item-header{padding:8px 14px 5px;font-size:12px;font-weight:500;color:var(--text);}
+.clin-item-num{display:inline-block;width:18px;height:18px;background:var(--surface2);border-radius:50%;text-align:center;line-height:18px;font-size:9px;color:var(--text2);margin-right:6px;}
+.clin-item-card.scored .clin-item-num{background:rgba(79,142,247,0.2);color:var(--accent);}
+.clin-options{padding:2px 12px 8px;display:flex;flex-direction:column;gap:3px;}
+.clin-opt-btn{background:transparent;border:1px solid var(--border);color:var(--text2);padding:5px 10px;border-radius:6px;text-align:left;cursor:pointer;font-size:11px;font-family:inherit;line-height:1.4;transition:all 0.15s;display:flex;align-items:flex-start;gap:8px;}
+.clin-opt-btn:hover{background:var(--surface2);border-color:#3a4570;color:var(--text);}
+.clin-opt-btn.selected{background:rgba(79,142,247,0.12);border-color:var(--accent);color:var(--text);}
+.clin-opt-score{min-width:16px;height:16px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0;margin-top:1px;}
+.clin-opt-btn.selected .clin-opt-score{background:var(--accent);color:#fff;}
+.clin-options-row{padding:2px 12px 8px;display:flex;gap:4px;flex-wrap:wrap;}
+.clin-opt-chip{background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:5px 10px;border-radius:16px;cursor:pointer;font-size:10px;font-family:inherit;transition:all 0.15s;}
+.clin-opt-chip:hover{border-color:#3a4570;color:var(--text);}
+.clin-opt-chip.selected{background:rgba(79,142,247,0.18);border-color:var(--accent);color:var(--accent);font-weight:500;}
+.clin-score-footer{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.clin-score-big{font-size:30px;font-weight:700;color:var(--accent);line-height:1;}
+.clin-score-actions{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;}
+.clin-score-interp{font-size:13px;color:var(--text2);}
+.clin-score-interp strong{color:var(--text);font-size:14px;}
+.clin-item-input{padding:4px 18px 14px;display:flex;align-items:center;gap:12px;}
+.clin-sub-scores{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:8px 12px;display:flex;flex-direction:column;gap:4px;font-size:10px;color:var(--text2);margin-top:6px;}
+.clin-sub-item{display:flex;justify-content:space-between;gap:8px;}
+.clin-sub-val{font-weight:700;color:var(--text);}
+.clin-num-input{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:7px;font-size:13px;font-family:inherit;width:90px;text-align:center;}
+.clin-num-input:focus{outline:none;border-color:var(--accent);}
+.clin-psqi-comps{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.clin-psqi-comp{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;text-align:center;min-width:70px;}
+.clin-psqi-comp-val{font-size:16px;font-weight:700;color:var(--accent);}
+.clin-psqi-comp-name{font-size:9px;color:var(--text2);margin-top:2px;}
+.clin-gds-options{padding:2px 12px 8px;display:flex;flex-direction:column;gap:4px;}
+.clin-gds-opt{background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:8px 12px;border-radius:8px;text-align:left;cursor:pointer;font-size:10px;font-family:inherit;line-height:1.5;transition:all 0.15s;}
+.clin-gds-opt:hover{border-color:#3a4570;color:var(--text);}
+.clin-gds-opt.selected{background:rgba(79,142,247,0.12);border-color:var(--accent);color:var(--text);}
+.clin-gds-stage{font-size:10px;font-weight:600;display:block;margin-bottom:2px;}
+.hist-card-pt{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:9px 10px;margin-bottom:7px;}
+.hist-card-top-pt{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;}
+.hist-scale-badge-pt{font-size:10px;font-weight:700;color:var(--accent);background:rgba(79,142,247,0.12);padding:1px 6px;border-radius:4px;}
+.hist-time-pt{font-size:9px;color:var(--text2);}
+.hist-score-pt{font-size:16px;font-weight:800;color:var(--accent);line-height:1;}
+.hist-interp-pt{font-size:10px;color:var(--text2);margin-left:5px;}
+.hist-name-pt{font-size:10px;color:var(--text2);margin:2px 0 5px;}
+.hist-actions-pt{display:flex;gap:4px;flex-wrap:wrap;}
+.hist-btn-pt{padding:3px 8px;border-radius:5px;font-size:10px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text2);font-family:inherit;transition:all 0.12s;}
+.hist-btn-pt:hover{border-color:var(--accent);color:var(--accent);}
+.hist-btn-pt.load{background:rgba(79,142,247,0.1);border-color:var(--accent);color:var(--accent);}
+
 @media(max-width:520px){
   header{justify-content:center;padding:8px 10px;}
   header > div:first-child{justify-content:center;}
   .nav-bar{overflow-x:auto;-webkit-overflow-scrolling:touch;}
   .nav-tab{padding:9px 8px;font-size:11px;}
+  #tabClin aside{display:none;}
+  #tabClin nav{width:100px;}
 }
 
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <header style="background:#1a1d2e;border-bottom:1px solid #2d3154;box-shadow:0 2px 8px rgba(0,0,0,0.25);flex-wrap:wrap;gap:6px;justify-content:center;">
@@ -139,6 +199,8 @@ tr:last-child td{border-bottom:none;}tr:hover td{background:#fafbff;}
   <button class="nav-tab active" id="navAppt" onclick="switchTab('appt');loadAppts()">📅 예약</button>
   <button class="nav-tab" id="navPatient" onclick="switchTab('patient')">👤 진료</button>
   <button class="nav-tab" id="navDrug" onclick="switchTab('drug')">💊 약물입력</button>
+  <button class="nav-tab" id="navSearch" onclick="switchTab('search');loadSearchTab()">🔍 접수조회</button>
+  <button class="nav-tab" id="navClin" onclick="switchTab('clin');initClinTab()">🧠 임상가척도</button>
   <button class="nav-tab" id="navProxy" onclick="switchTab('proxy')">📋 대리처방</button>
   <button class="nav-tab" id="navSelcare" onclick="switchTab('selcare')">⭐ 선택의료</button>
   <button class="nav-tab" id="navSms" onclick="switchTab('sms')">📱 문자발송</button>
@@ -348,6 +410,138 @@ tr:last-child td{border-bottom:none;}tr:hover td{background:#fafbff;}
     </div>
     <div id="jsonView" class="hidden"><pre class="json-preview" id="jsonPreview"></pre></div>
   </div>
+</div>
+
+<!-- ══ 접수조회 탭 ══ -->
+<div id="tabSearch" class="container hidden" style="max-width:100%;padding:0;">
+  <div style="max-width:740px;margin:0 auto;padding:16px 12px;">
+    <!-- 검색 바 -->
+    <div style="background:#f8fafc;border:1px solid #e2e4ef;border-radius:12px;padding:14px 16px;margin-bottom:14px;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <select id="search-type" style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;background:white;color:var(--text);">
+          <option value="all">전체</option>
+          <option value="chojin">초진</option>
+          <option value="daeri">대리</option>
+        </select>
+        <input type="text" id="search-chart" placeholder="차트번호" style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;width:110px;">
+        <input type="text" id="search-name" placeholder="이름" style="padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;width:100px;">
+        <button onclick="doSearch()" class="btn btn-primary" style="font-size:13px;">🔍 조회</button>
+      </div>
+    </div>
+    <div id="search-results" style="font-size:13px;color:#9ca3af;text-align:center;padding:20px;">조회 버튼을 눌러주세요.</div>
+  </div>
+</div>
+
+<!-- 접수조회 상세 모달 -->
+<div id="detail-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9000;overflow-y:auto;">
+  <div style="background:#fff;max-width:480px;margin:60px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);">
+    <div style="background:#1a3a5c;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;">
+      <span id="modal-title" style="font-size:16px;font-weight:700;"></span>
+      <button onclick="closeModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+    </div>
+    <div id="modal-body" style="padding:16px 20px;overflow-y:auto;max-height:65vh;"></div>
+    <div style="padding:12px 20px;border-top:1px solid #eee;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;">
+      <button onclick="openDeleteModal()" style="background:#dc2626;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:13px;cursor:pointer;font-weight:700;margin-right:auto;">🗑️ 삭제</button>
+      <button onclick="openEditModal()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:13px;cursor:pointer;font-weight:700;">✏️ 수정</button>
+      <button onclick="printModalPDF()" style="background:#16a34a;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;cursor:pointer;font-weight:700;">🖨️ PDF</button>
+      <button onclick="closeModal()" class="btn btn-outline" style="font-size:13px;">닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 수정 모달 -->
+<div id="edit-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9100;overflow-y:auto;">
+  <div style="background:#fff;max-width:400px;margin:80px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+    <div style="background:#d97706;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:15px;font-weight:bold;">✏️ 데이터 수정</span>
+      <button onclick="closeEditModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+    </div>
+    <div style="padding:18px 20px;">
+      <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:10px;margin-bottom:14px;font-size:12px;color:#856404;">⚠️ 잘못 입력된 이름 또는 차트번호만 수정할 수 있습니다.</div>
+      <div id="edit-fields-section">
+        <div style="margin-bottom:12px;">
+          <label style="font-size:12px;font-weight:600;color:#374151;display:block;margin-bottom:5px;">이름 <span id="edit-name-label" style="color:#9ca3af;font-weight:400;"></span></label>
+          <input type="text" id="edit-name-input" style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="font-size:12px;font-weight:600;color:#374151;display:block;margin-bottom:5px;">차트번호 <span id="edit-chart-label" style="color:#9ca3af;font-weight:400;"></span></label>
+          <input type="text" id="edit-chart-input" inputmode="numeric" style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;">
+        </div>
+        <button onclick="saveEdit()" style="width:100%;background:#16a34a;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;">💾 저장</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 삭제 모달 -->
+<div id="delete-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9200;overflow-y:auto;">
+  <div style="background:#fff;max-width:380px;margin:100px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.35);">
+    <div style="background:#dc2626;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:15px;font-weight:bold;">🗑️ 데이터 삭제</span>
+      <button onclick="closeDeleteModal()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+    </div>
+    <div style="padding:18px 20px;">
+      <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:12px;font-size:12px;color:#991b1b;line-height:1.6;">⚠️ <strong>삭제된 데이터는 복구할 수 없습니다.</strong></div>
+      <div id="delete-target-info" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px;font-size:12px;color:#374151;margin-bottom:12px;font-weight:600;"></div>
+      <input type="password" id="delete-pw-input" placeholder="관리자 비밀번호"
+        style="width:100%;padding:11px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:10px;"
+        onkeydown="if(event.key==='Enter') confirmDelete()">
+      <button onclick="confirmDelete()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;">🗑️ 삭제 확인</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 임상가척도 탭 ══ -->
+<div id="tabClin" class="hidden" style="background:var(--bg);min-height:calc(100vh - 120px);">
+  <!-- 환자번호/날짜 바 -->
+  <div style="padding:8px 16px;background:#fff;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:50;">
+    <div><label style="font-size:11px;color:var(--text2);margin-right:6px;">환자번호</label>
+      <input type="text" id="ptNum" placeholder="45678" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;width:90px;" oninput="scheduleHistLoad()"></div>
+    <div><label style="font-size:11px;color:var(--text2);margin-right:6px;">검사날짜</label>
+      <input type="text" id="ptDate" placeholder="260428" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;width:80px;"></div>
+    <button onclick="saveClinResult()" class="btn btn-primary" style="font-size:12px;padding:7px 14px;">💾 저장</button>
+    <button onclick="resetAllClin()" class="btn btn-outline" style="font-size:12px;padding:7px 12px;">🔄 초기화</button>
+  </div>
+  <!-- 3열 레이아웃: 사이드바 + 메인 + 히스토리 -->
+  <div style="display:flex;min-height:calc(100vh - 170px);">
+    <!-- 사이드바 -->
+    <nav style="width:140px;flex-shrink:0;background:#fff;border-right:1px solid var(--border);padding:12px 0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;">
+      <div style="padding:0 12px 10px;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);font-weight:500;">검사 목록</div>
+      <div class="clin-nav-item active" onclick="showPanel('hamd')"><span>HAMD</span><span class="clin-nav-badge" id="badge-hamd">17</span></div>
+      <div class="clin-nav-item" onclick="showPanel('hama')"><span>HAMA</span><span class="clin-nav-badge" id="badge-hama">14</span></div>
+      <div class="clin-nav-item" onclick="showPanel('bprs')"><span>BPRS</span><span class="clin-nav-badge" id="badge-bprs">18</span></div>
+      <div class="clin-nav-item" onclick="showPanel('bdrs')"><span>BDRS</span><span class="clin-nav-badge" id="badge-bdrs">19</span></div>
+      <div class="clin-nav-item" onclick="showPanel('ymrs')"><span>YMRS</span><span class="clin-nav-badge" id="badge-ymrs">11</span></div>
+      <div class="clin-nav-item" onclick="showPanel('whodas')"><span>WHODAS</span><span class="clin-nav-badge" id="badge-whodas">15</span></div>
+      <div class="clin-nav-item" onclick="showPanel('honos')"><span>HoNOS</span><span class="clin-nav-badge" id="badge-honos">13</span></div>
+      <div class="clin-nav-item" onclick="showPanel('mmse')"><span>MMSE/GDS</span><span class="clin-nav-badge" id="badge-mmse">30</span></div>
+      <div class="clin-nav-item" onclick="showPanel('psqi')"><span>PSQI</span><span class="clin-nav-badge" id="badge-psqi">—</span></div>
+    </nav>
+    <!-- 메인 패널 -->
+    <main style="flex:1;padding:14px 16px;max-width:640px;min-width:0;overflow-x:hidden;" id="mainContent"></main>
+    <!-- 히스토리 패널 -->
+    <aside style="width:210px;flex-shrink:0;background:#fff;border-left:1px solid var(--border);padding:12px 10px;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;display:flex;flex-direction:column;gap:8px;">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text2);font-weight:600;padding-bottom:8px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;">
+        <span>📋 최근 기록</span>
+        <button onclick="loadHistResults()" style="font-size:10px;padding:2px 8px;border:1px solid var(--border);border-radius:5px;background:var(--surface2);color:var(--text2);cursor:pointer;font-family:inherit;">새로고침</button>
+      </div>
+      <div style="display:flex;gap:5px;flex-shrink:0;">
+        <input id="hist-search" placeholder="이름/척도" oninput="filterHistResults()"
+          style="flex:1;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:var(--text);font-size:11px;outline:none;min-width:0;" />
+        <select id="hist-period" onchange="loadHistResults()" style="padding:5px 4px;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:var(--text2);font-size:10px;outline:none;cursor:pointer;">
+          <option value="7">7일</option>
+          <option value="30" selected>30일</option>
+          <option value="90">3개월</option>
+          <option value="0">전체</option>
+        </select>
+      </div>
+      <div style="flex:1;overflow-y:auto;" id="hist-list">
+        <div style="text-align:center;padding:2rem 0;font-size:11px;color:var(--text2);line-height:1.8;">환자번호 입력 후<br>저장하면 기록이<br>표시됩니다</div>
+      </div>
+    </aside>
+  </div>
+  <!-- 토스트 -->
+  <div id="clin-toast" style="position:fixed;bottom:28px;right:28px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 20px;font-size:13px;color:var(--text);display:none;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,0.15);max-width:340px;"></div>
 </div>
 
 <!-- ══ 대리처방 탭 ══ -->
@@ -578,7 +772,7 @@ async function claudeCall(body){var r=await fetch(PROXY,{method:'POST',headers:{
 async function sheetPost(body){body._sheet_action=true;var r=await fetch(PROXY,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+ANON_KEY},body:JSON.stringify(body)});return r.json();}
 
 // ── 탭 ───────────────────────────────────────────────
-var TABS=['appt','patient','drug','proxy','selcare','sms','stats'];
+var TABS=['appt','patient','drug','search','clin','proxy','selcare','sms','stats'];
 // ── 약물 일괄 입력 ──────────────────────────────────
 function applyBulkFill(){
   var dose=document.getElementById('bulkDose')?document.getElementById('bulkDose').value.trim():'';
@@ -1796,6 +1990,1781 @@ function setStatus(id,type,msg){
   el.className='status-bar status-'+type;el.classList.remove('hidden');
   if(type==='loading')el.innerHTML='<div class="spinner"></div><span>'+msg+'</span>';
   else el.textContent=msg;
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// ══ 접수조회 & 임상가척도 (from adm_clinic) ══
+// ══════════════════════════════════════════════════════════════════
+
+// Supabase client for clinician scales (using same project as pt.html)
+const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1cmJmY29jaWh2YXBidGR6Ynl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTUzMzQsImV4cCI6MjA5MjUzMTMzNH0.Y89bwZlS5ciqfhF9IRbF8oGa9CmFRsP6msFbp7DVypc';
+const SUPA_BUCKET = 'signatures';
+let _sbClient = null;
+function getSb() {
+  if(!_sbClient) {
+    // supabase global from CDN
+    _sbClient = supabase.createClient('https://rurbfcocihvapbtdzbyt.supabase.co', SUPA_ANON);
+  }
+  return _sbClient;
+}
+// Alias so extracted code using `sb` still works
+let sb = { from: (t) => getSb().from(t) };
+
+function toast(m) { showToast(m); }
+
+// 임상가척도 초기화 함수 (탭 클릭 시)
+let clinTabInited = false;
+function initClinTab() {
+  if(!clinTabInited) {
+    clinTabInited = true;
+    const now = new Date();
+    const ptDate = document.getElementById('ptDate');
+    if(ptDate && !ptDate.value) {
+      ptDate.value = String(now.getFullYear()).slice(2)+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0');
+    }
+    showPanel('hamd');
+    loadHistResults();
+  } else {
+    loadHistResults();
+  }
+}
+
+
+const CLIN_SCALES = {
+
+hamd: {
+  title: 'HAMD',
+  fullTitle: 'Hamilton Depression Rating Scale',
+  comment: '17항목, 최고점 52, (8 mild, 17 moderate, 24 severe)',
+  interpret: (s) => {
+    if(s<=7) return '정상 (우울증 아님)';
+    if(s<=16) return 'Mild Depression';
+    if(s<=23) return 'Moderate Depression';
+    return 'Severe Depression';
+  },
+  copyFmt: (d, s, i) => `${d}/ HAMD/ ${s}/ ${i}`,
+  pdfFmt: (n, d) => `${n}HAMD${d}`,
+  items: [
+    {q:'1. 우울한 기분', opts:['없음','질문에 의해서만 기분상태가 있다','스스로 기분상태를 말한다','비언어적 방법으로 기분상태를 나타낸다','언어 및 비언어적 방법으로 모두 표현한다']},
+    {q:'2. 죄책감', opts:['없음','자책감, 사람들을 낙담시켰다는 느낌','과거 실수에 대한 죄책감/반추','현재 아픈 것이 응징이라 생각, 죄책망상','비난하는 환청이나 위협적 환시']},
+    {q:'3. 자살사고', opts:['없음','인생이 살 가치 없다는 느낌','이미 죽었어야 한다는 소망/죽을 가능성에 대한 생각','자살사고 혹은 제스처','자살 시도']},
+    {q:'4. 초기 불면증', opts:['잠드는 데 불편 없음','가끔 잠들기 힘듦 (30분 이상)','매일 밤 잠들기 힘들다고 호소']},
+    {q:'5. 중기 불면증', opts:['어려움 없음','밤 동안 잘 못 잤다고 호소','밤 동안 잠에서 깨어남 (용변 제외)']},
+    {q:'6. 말기 불면증', opts:['어려움 없음','아침 일찍 깨나 다시 잠든다','아침에 일찍 깨어 다시 잠들지 못함']},
+    {q:'7. 일과 활동', opts:['어려움 없음','피로감/허약감/자신감 없다는 느낌','일과 취미에 흥미 상실','활동 시간 실제 감소, 생산성 저하','현 증상으로 일을 중단']},
+    {q:'8. 지체 (생각·말·운동활성 저하)', opts:['정상','면담 시 약간 지체','면담 시 뚜렷이 지체','면담이 어려울 정도로 지체','완전한 혼미 상태']},
+    {q:'9. 운동성 초조', opts:['없음','안절부절못함','손이나 머리카락 등을 만지작거림','가만히 앉아있지 못하고 계속 몸 움직임','손 쥐어짜기, 손톱 물어뜯기, 머리카락 당기기 등']},
+    {q:'10. 정신적 불안', opts:['없음','경도','중등도','중증','최고도']},
+    {q:'11. 신체적 불안의 생리적 현상', opts:['없음','경도','중등도','중증','최고도 (기능 불가)']},
+    {q:'12. 위장관계 신체증상', opts:['없음','식욕 없으나 자력으로 식사, 복부 팽만감','보호자 독려 없으면 식사 안 함, 위장관 약 요구']},
+    {q:'13. 전반적인 신체증상', opts:['없음','팔다리·등·머리 무거움, 피로감','확연한 증상 있음']},
+    {q:'14. 성적인 증상', opts:['없음','경도','중등도']},
+    {q:'15. 건강염려증', opts:['없음','몸에 대해 많이 생각','건강에 집착','자주 증상을 호소하거나 진찰 받음','건강염려증적 망상']},
+    {q:'16. 체중감소', opts:['체중감소 없음','현재 증상과 관련하여 체중감소 추측','명백한 체중 감소']},
+    {q:'17. 병식', opts:['자신이 우울하고 병들었음을 인식','병에 걸렸다고 알지만 외부 원인으로 생각','자신의 병을 전적으로 부인']},
+  ]
+},
+
+hama: {
+  title: 'HAMA',
+  fullTitle: 'Hamilton Anxiety Rating Scale',
+  comment: '14항목, 최고점 54, (8 anxiety-mild, 15 anxiety-moderate, 24 anxiety-severe)',
+  interpret: (s) => {
+    if(s<=7) return 'Anxiety-Normal';
+    if(s<=14) return 'Anxiety-Mild';
+    if(s<=23) return 'Anxiety-Moderate';
+    return 'Anxiety-Severe';
+  },
+  copyFmt: (d, s, i) => `${d}/ HAMA/ ${s}/ ${i}`,
+  pdfFmt: (n, d) => `${n}HAMA${d}`,
+  items: [
+    {q:'1. 불안한 기분', opts:['없다','물어보았을 때만 경미한 걱정/불안','사소한 일에 집착, 불안이 그렇지 않은 날보다 많음','거의 매일 일상생활에 지장 줄 불안/걱정','거의 항상 지속적인 불안, 활동 중단']},
+    {q:'2. 긴장', opts:['없다','며칠 동안 경미한 긴장감/가끔 지나치게 깜짝 놀람','하루 절반은 근육 긴장 또는 피로','거의 매일 근육 긴장·피로, 하루 75% 이상 안절부절','면담 시 지속적으로 긴장·초조']},
+    {q:'3. 공포', opts:['없다','경미한 두려움 염려, 심각한 기능문제 없음','1번 이상 두려움으로 고통/회피','거의 매일 두려움 지속, 동반자 필요','두려움/회피로 인한 현저한 기능장해']},
+    {q:'4. 불면', opts:['수면 곤란 없다','경미한 수면 곤란','규칙적인 수면 곤란 (잠드는데 30분 이상)','지속적인 수면 곤란','매일 밤 수면 어렵고 매일 오전 심한 피로']},
+    {q:'5. 인지', opts:['어려움 없다','가끔 건망증/주의집중 어려움 (고통 없음)','반복적으로 건망증/주의집중 어려움','지속적인 주의집중 어려움으로 일상 수행 어려움','주의집중 장해로 일상 역할 수행 장해']},
+    {q:'6. 우울한 기분', opts:['없다','때때로 경미하게 기분 가라앉음','하루 절반 이상 슬픔/흥미 없음','지속적 흥미 상실, 고통스럽거나 타인 관찰 가능','심하게 우울한 기분이 매일, 역할 수행 어려움']},
+    {q:'7. 신체적 증상 (근육계)', opts:['없다','가끔 한두 개 증상, 심각한 고통 없음','여러 증상에 경미한 고통 또는 한 증상에 중등도 고통','증상 없는 날보다 있는 날이 많고 중등도 이상 고통','매일 심각한 고통, 반복적으로 의학적 도움']},
+    {q:'8. 심혈관계 증상', opts:['없다','가끔 한두 개 증상, 심각한 고통 없음','여러 증상에 경미한 고통 또는 한 증상에 중등도 고통','증상 없는 날보다 있는 날이 많고 중등도 이상 고통','매일 심각한 고통, 일상 제한']},
+    {q:'9. 호흡기계 증상', opts:['없다','가끔 한두 개 증상, 심각한 고통 없음','여러 증상에 경미한 고통 또는 한 증상에 중등도 고통','증상 없는 날보다 있는 날이 많고 중등도 이상 고통','매일 심각한 고통, 일상 제한']},
+    {q:'10. 소화기계 증상', opts:['없다','위장 불편감, 변비, 설사, 메스꺼움 가끔','구토, 복부 통증, 설사 여러 번 반복','증상 있는 날이 더 많아 음식/화장실 염려','매일 증상, 심각한 고통, 일상 제한']},
+    {q:'11. 비뇨기계 증상', opts:['없다','비뇨기계 증상 가끔 또는 성적 관심에 경미한 변화','일주일 중 여러 날 나타나고 성기능 때때로 어려움','없는 날보다 있는 날이 많거나 무월경','매일 비뇨생식계 증상, 고통으로 의학적 도움']},
+    {q:'12. 자율신경계 증상', opts:['없다','경미한 증상 가끔','일주일 여러 번 증상, 신경 쓰임','거의 매일 고통/당황스러움','매일 증상, 고통스럽고 기능하기 힘들다']},
+    {q:'13. 면담 시 행동 (전반적)', opts:['뚜렷한 증상 없다','한두 개 증상 경미하게 나타남','경미한 여러 증상 또는 한 증상이 중등도 이상','면담 내내 지속적으로 증상 나타남','초조·과호흡, 면담 끝까지 마치기 힘들다']},
+    {q:'14. 감각계 증상 (이명·흐려보임·달아오름·허약감·찌르는 느낌)', opts:['없다','가끔 한두 개 증상, 심각한 고통 없음','여러 증상에 경미한 고통 또는 한 증상에 중등도 고통','증상 없는 날보다 있는 날이 많고 중등도 이상 고통','매일 심각한 고통, 일상 제한']},
+  ]
+},
+
+bprs: {
+  title: 'BPRS',
+  fullTitle: 'Brief Psychiatric Rating Scale',
+  comment: '18항목, 최고점 108 (사고장애 18/ 적대의심 18/ 철퇴지연 18/ 동요흥분 12/ 불안우울 12)',
+  interpret: (s) => `총점 ${s}`,
+  copyFmt: (d, s, i, scores) => {
+    const th = (scores[3]||0)+(scores[11]||0)+(scores[14]||0);
+    const hs = (scores[9]||0)+(scores[10]||0)+(scores[13]||0);
+    const ws = (scores[2]||0)+(scores[12]||0)+(scores[15]||0);
+    const ds = (scores[5]||0)+(scores[16]||0);
+    const as = (scores[1]||0)+(scores[4]||0)+(scores[8]||0);
+    return `${d}/ BPRS/ 총점-${s} 사고장애-${th} 적대의심-${hs} 철퇴지연-${ws} 동요흥분-${ds} 불안우울-${as}`;
+  },
+  pdfFmt: (n, d) => `${n}BPRS${d}`,
+  items: [
+    {q:'1. 신체적 염려', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'2. 불안', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'3. 감정적 철퇴', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'4. 개념적인 와해', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'5. 죄책감', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'6. 긴장', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'7. 반복적인 행동과 자세', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'8. 과대성', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'9. 우울한 정동', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'10. 적대감', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'11. 의심', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'12. 환각 행동', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'13. 운동지체', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'14. 비협조성', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'15. 이상한 사고내용', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'16. 둔마된 정동', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'17. 흥분성', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+    {q:'18. 지남력 장애', opts:['없음(0)','매우 경함(1)','경함(2)','중등도(3)','중고도(4)','심함(5)','극히 심함(6)']},
+  ]
+},
+
+bdrs: {
+  title: 'BDRS',
+  fullTitle: '양극성 우울증 평가척도 (Bipolar Depression Rating Scale)',
+  comment: '19항목, 최고점 57, (0~7 관해상태, 8~22 환자평균 절단점 이하, 23이상 환자평균 절단점 이상)',
+  interpret: (s) => {
+    if(s<=7) return '관해상태 절단점 이하';
+    if(s<=22) return '환자평균 절단점 이하';
+    return '환자평균 절단점 이상';
+  },
+  copyFmt: (d, s, i) => `${d}/ BDRS/ ${s}/ ${i}`,
+  pdfFmt: (n, d) => `${n}BDRS${d}`,
+  items: [
+    {q:'1. 우울한 기분', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'2. 수면 장해', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'3. 식욕 장해', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'4. 사회적 교류 감소', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'5. 활력 및 활동 감소', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'6. 동기 저하', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'7. 집중력 및 기억력 장해', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'8. 불안', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'9. 무쾌감', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'10. 정동 둔마', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'11. 무가치감', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'12. 무력감과 절망감', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'13. 자살 사고', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'14. 죄책감', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'15. 정신병적 증상', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'16. 자극과민성', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'17. 불안정성', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'18. 운동의욕 항진', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+    {q:'19. 언어활동 항진 / 초조', opts:['없음(0)','경도(1)','중등도(2)','고도(3)']},
+  ]
+},
+
+ymrs: {
+  title: 'YMRS',
+  fullTitle: "Young Mania Rating Scale",
+  comment: '11항목, 최고점 60, (0~12 normal, 13~19 very mild, 20~25 mild, 26~37 moderate, 38이상 severe)',
+  interpret: (s) => {
+    if(s<=12) return 'Normal';
+    if(s<=19) return 'Very Mild';
+    if(s<=25) return 'Mild';
+    if(s<=37) return 'Moderate';
+    return 'Severe';
+  },
+  copyFmt: (d, s, i) => `${d}/ YMRS/ ${s}/ ${i}`,
+  pdfFmt: (n, d) => `${n}YMRS${d}`,
+  items: [
+    {q:'1. 고조된 기분', opts:['없다(0)','물어보았을 때 경도로 고조(1)','주관적으로 명백하게 고조, 낙관적, 유쾌(2)','고조되어 있거나 내용에 부적절, 익살맞다(3)','다행감, 부적절하게 웃음, 노래를 부름(4)']},
+    {q:'2. 운동 활성-에너지 증가', opts:['없다(0)','주관적으로 증가(1)','활기차다, 몸짓 증가(2)','과다한 에너지, 때로 과다활동, 안절부절(진정됨)(3)','운동성 흥분, 지속적 과다활동(진정 안됨)(4)']},
+    {q:'3. 성적 관심', opts:['정상(0)','경도로 증가(1)','물어볼 때 명백하게 주관적 증가(2)','자발적으로 성적 내용을 말함(3)','공공연하게 성적인 행동(4)']},
+    {q:'4. 수면', opts:['감소 없다(0)','정상보다 1시간 미만 감소(1)','정상보다 1시간 이상 감소(2)','수면 필요성 감소 보고(3)','수면 필요성 부인(4)']},
+    {q:'5. 자극과민성', opts:['없다(0)','0~2 사이(1)','주관적으로 증가(2)','2~4 사이(3)','면담 중 때때로 과민, 최근 화를 낸 에피소드(4)','4~6 사이(5)','면담 중 자주 과민, 내내 무뚝뚝하고 퉁명(6)','6~8 사이(7)','적대적, 비협조적, 면담 불가능(8)']},
+    {q:'6. 말-속도와 양', opts:['증가 안 함(0)','0~2 사이(1)','말 많은 듯한 느낌(2)','2~4 사이(3)','때로 속도/양 증가, 때로 장황(4)','4~6 사이(5)','밀어내듯 말함, 속도/양 지속 증가(6)','6~8 사이(7)','쏟아내듯 말함, 중단 불가(8)']},
+    {q:'7. 언어-사고장애', opts:['없다(0)','우원적, 경도 산만, 빠른 사고(1)','산만, 주제 자주 바뀜, 사고 질주(2)','사고 비약/이탈, 따라잡기 힘듦(3)','지리멸렬, 의사소통 불가(4)']},
+    {q:'8. 내용', opts:['정상(0)','0~2 사이(1)','실현 가능성 의심스러운 계획(2)','2~4 사이(3)','특별하고 구체적인 계획, 지나치게 종교적(4)','4~6 사이(5)','면담자를 위협, 고함, 면담 어려움(6)','6~8 사이(7)','폭력적, 파괴적, 면담 불가(8)']},
+    {q:'9. 파탄적-공격적인 행동', opts:['없다, 협조적(0)','0~2 사이(1)','빈정댐, 때로 언성 높임(2)','2~4 사이(3)','요구가 많음, 위협적 행동(4)','4~6 사이(5)','면담자 위협, 고함(6)','6~8 사이(7)','폭력적, 파괴적, 면담 불가(8)']},
+    {q:'10. 용모', opts:['복장과 차림새 적절(0)','약간 흐트러진 듯(1)','단정하지 못함, 중등도로 헝클어짐(2)','옷차림 헝클어짐, 부분적으로만 착용(3)','완전히 흐트러짐, 장식 요란, 괴상함(4)']},
+    {q:'11. 병식', opts:['있다, 치료 필요성 동의(0)','병일 수도 있다(1)','행동 변화 인정하지만 병은 부인(2)','행동 변화 가능성은 인정, 병은 부인(3)','전적으로 행동 변화 부인(4)']},
+  ]
+},
+
+whodas: {
+  title: 'WHODAS',
+  fullTitle: '세계 보건기구 장애조사표 (WHODAS 2.0)',
+  comment: '15항목, 최고점 48, (0~9 기능장애 상위 10% 미만, 10이상 기능장애 상위 10% 이상)',
+  interpret: (s) => {
+    if(s<=9) return '기능장애 상위 10% 미만';
+    return '기능장애 상위 10% 이상';
+  },
+  copyFmt: (d, s, i) => `${d}/ WHODAS/ ${s}/ ${i}`,
+  pdfFmt: (n, d) => `${n}WHODAS${d}`,
+  items: [
+    {q:'1. 30분 동안 서있기와 같이 장시간 서있기', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'2. 집안일 처리하기', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'3. 새로운 과제 배우기', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'4. 지역사회 활동에 참여', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'5. 건강상태가 정서에 미친 영향', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'6. 10분 동안 무엇인가에 집중하기', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'7. 1km와 같은 장거리 걷기', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'8. 몸 전체 씻기', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'9. 옷 입기', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'10. 낯선 사람 대하기', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'11. 친구관계 유지하기', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'12. 일상적인 직장/학교 생활', opts:['없음(0)','약간(1)','보통(2)','심함(3)','극심한 또는 할 수 없음(4)']},
+    {q:'13. 어려움을 겪은 날 (일 수)', type:'number', unit:'일', placeholder:'예) 15'},
+    {q:'14. 평소 활동을 전혀 수행하지 못한 날 (일 수)', type:'number', unit:'일', placeholder:'예) 5'},
+    {q:'15. 일상활동이 감소하거나 줄여야 했던 날 (일 수)', type:'number', unit:'일', placeholder:'예) 10'},
+  ]
+},
+
+honos: {
+  title: 'HoNOS',
+  fullTitle: '건강 성과 척도 (Health of the Nation Outcome Scales)',
+  comment: '13항목, 최고점 52. 0~14 intensive case management 필요없음, 15이상 필요',
+  interpret: (s) => {
+    if(s<=14) return 'Intensive case management 필요없음';
+    return 'Intensive case management 필요';
+  },
+  copyFmt: (d, s, i) => `${d}/ HoNOS/ ${s}/ ${i}`,
+  pdfFmt: (n, d) => `${n}Honos${d}`,
+  items: [
+    {q:'1. 공격적이고 파괴적인 행동', opts:['전혀 없음(0)','조치가 필요치 않은 자극과민성·언쟁(1)','공격적 몸짓·떠밀기·위협·경미한 기물 파손(2)','신체적 공격·보다 심한 기물 파손(3)','심각한 신체적 공격·방화·심각한 협박(4)']},
+    {q:'2. 고의적인 자해', opts:['전혀 없음(0)','일시적 자살 사고, 위험성 거의 없음(1)','가벼운 위험, 손목 긋기 등 위험성 낮은 자해(2)','중등도~심각한 의도적 자해 위험, 준비 행위(3)','심각한 자살 시도(4)']},
+    {q:'3. 알코올 혹은 약물사용 문제', opts:['전혀 없음(0)','사회적 규범 내 다소 과도한 탐닉(1)','음주/약물 조절능력 상실, 심각히 중독은 아님(2)','잦은 조절 상실, 뚜렷한 갈망·의존(3)','알코올/약물 문제로 무능(4)']},
+    {q:'4. 인지 장애', opts:['전혀 없음(0)','기억력·이해력 경미한 문제(0)','경도이나 분명한 인지 문제(2)','시간·장소·사람 지남력 현저한 장애(3)','심각한 지남력 장애, 말 이해 불가(4)']},
+    {q:'5. 신체질환/신체장애 문제', opts:['전혀 없음(0)','경미한 건강 문제(1)','신체 건강 문제로 이동성·활동성에 약간 제약(2)','신체 건강 문제로 활동성 중등도 제약(3)','신체 건강의 심각한 문제(4)']},
+    {q:'6. 환청·망상과 관련된 문제', opts:['전혀 없음(0)','문화 규범 벗어난 약간 이상한 믿음(1)','망상·환각 있으나 고통 없거나 기이한 행동 거의 없음(2)','망상·환각에 현저히 집착, 많은 고통, 기이한 행동(3)','망상·환각으로 심각한 영향(4)']},
+    {q:'7. 우울감과 관련된 문제', opts:['전혀 없음(0)','울적함·경미한 기분 변화(1)','가볍지만 분명한 우울·고통(2)','뚜렷한 신체적·정신적 지연 동반 우울(3)','죄책감·자책감이 있는 심각한 우울(4)']},
+    {q:'8. 다른 정신과적 행동의 문제', opts:['전혀 없음(0)','경미한 비임상적 문제(1)','임상적으로 가벼운 하나의 문제(2)','통제 상실한 간헐적 심한 발작 또는 고통(3)','대부분 활동을 지배하는 심각한 문제(4)']},
+    {q:'9. 대인관계의 문제', opts:['어떤 유의미한 문제도 없음(0)','경미한 비임상적 문제(1)','지지적 관계 맺기·유지에 명백한 문제(2)','사회적 위축·비지지적 관계로 지속적 주요 문제(3)','사회적 의사소통 능력 부재·심각한 수동적 위축(4)']},
+    {q:'10. 일상생활 능력의 문제', opts:['어떤 문제도 없음, 모든 기능 좋음(0)','경미한 문제(1)','자기관리는 적절하나 복잡한 기술 수행에 주요 결함(2)','여러 복잡한 기술 수행 못하고 자기관리 한 영역 이상 주요 문제(3)','거의 모든 복잡한 기술 불능(4)']},
+    {q:'11. 주거 환경의 문제', opts:['주거시설·생활환경 만족스러움(0)','경미·일시적 문제, 전반적으로 수용 가능(1)','주거시설·상황에 하나 이상 중대한 문제(2)','고통 야기하는 다양한 문제의 주거시설(3)','주거시설 수용 불가, 쫓겨나거나 문제 악화(4)']},
+    {q:'12. 직업과 여가 활동의 문제', opts:['주간 환경 만족스러움(0)','경미·일시적 문제(1)','활동 선택 제한됨(2)','이용 가능한 숙련된 서비스 현저 부족(3)','주간 활동에 대한 기회 부족(4)']},
+    {q:'13. 정신증 때문이 아닌 비합리적 강한 믿음', opts:['강한 비합리적 믿음 없음(0)','비합리적 믿음 있으나 인식, 최소한의 삶 영향(1)','비합리적 믿음 있으나 인식, 삶에 경미한 영향(2)','비합리적 믿음, 약간의 병식, 삶에 중대한 부정적 영향(3)','비합리적 믿음에 병식 거의 없음, 심각한 효과(4)']},
+  ]
+},
+
+mmse: {
+  title: 'MMSE & GDS',
+  fullTitle: 'Mini-Mental State Examination & Global Deterioration Scale',
+  comment: 'MMSE(30항목, 최고점 30), GDS(7단계)',
+  isMMSE: true,
+  interpret: (mmse, gds) => `MMSE ${mmse}점, GDS 단계 ${gds}`,
+  copyFmt: (d, mmseScore, gdsStage) => `${d}/ MMSE/ ${mmseScore}/ GDS단계-${gdsStage}`,
+  pdfFmt: (n, d) => `${n}MMSE${d}`,
+  mmseItems: [
+    {cat:'지남력/시간',q:'오늘은 몇 년도입니까?'},
+    {cat:'지남력/시간',q:'몇 월입니까?'},
+    {cat:'지남력/시간',q:'몇 일입니까?'},
+    {cat:'지남력/시간',q:'무슨 요일입니까?'},
+    {cat:'지남력/시간',q:'계절은 무엇입니까?'},
+    {cat:'지남력/주소',q:'도 (시)를 말씀해보세요.'},
+    {cat:'지남력/주소',q:'군 (시, 구)를 말씀해보세요.'},
+    {cat:'지남력/주소',q:'면 (동)을 말씀해보세요.'},
+    {cat:'지남력/주소',q:'리를 말씀해보세요.'},
+    {cat:'지남력/장소',q:'여기는 무엇을 하는 곳인가요?'},
+    {cat:'기억등록',q:'나무'},
+    {cat:'기억등록',q:'자동차'},
+    {cat:'기억등록',q:'모자'},
+    {cat:'주의집중/계산',q:'100-7=?'},
+    {cat:'주의집중/계산',q:'여기서 다시 7 빼기 (93-7)'},
+    {cat:'주의집중/계산',q:'다시 7 빼기 (86-7)'},
+    {cat:'주의집중/계산',q:'또 한번 7 빼기 (79-7)'},
+    {cat:'주의집중/계산',q:'마지막으로 7 빼기 (72-7)'},
+    {cat:'언어기능',q:'시계 이름 맞추기'},
+    {cat:'언어기능',q:'볼펜 이름 맞추기'},
+    {cat:'명령수행',q:'종이를 오른손으로 받아서'},
+    {cat:'명령수행',q:'반으로 접어서'},
+    {cat:'명령수행',q:'무릎 위에 올려 놓으세요'},
+    {cat:'기억회상',q:'나무'},
+    {cat:'기억회상',q:'자동차'},
+    {cat:'기억회상',q:'모자'},
+    {cat:'언어/praxis',q:'오각형 겹쳐서 그리기'},
+    {cat:'언어/praxis',q:'"간장공장공장장" 따라하기'},
+    {cat:'언어/praxis',q:'옷은 왜 빨아 입습니까?'},
+    {cat:'언어/praxis',q:'길에서 주민등록증 주울 때?'},
+  ],
+  gdsStages: [
+    {n:1, label:'인지장애 없음', desc:'임상적으로 정상. 주관적 기억 장애 없음.'},
+    {n:2, label:'매우 경미한 인지장애', desc:'물건을 둔 곳을 잊음, 전부터 잘 알던 이름이 생각 안 남. 직장/사회생활 문제 없음.'},
+    {n:3, label:'경미한 인지장애', desc:'낯선 곳 길 잃음, 귀중품 엉뚱한 곳, 직업/사회 수행 감퇴. 자세한 면담으로만 드러남.'},
+    {n:4, label:'중등도 인지장애', desc:'최근 사건/시사 기억 못함, 순차적 빼기 집중력 장애. 혼자 외출/금전관리에 지장.'},
+    {n:5, label:'조기 중증 인지장애', desc:'집주소·전화번호·가까운 친지 이름 기억 어려움. 다른 사람의 도움 없이 지낼 수 없음.'},
+    {n:6, label:'중증 인지장애', desc:'배우자 이름 종종 잊음, 최근 사건 거의 못 기억. 대소변 실수, 외출 시 도움 필요.'},
+    {n:7, label:'후기 중증 인지장애', desc:'모든 언어구사 능력 상실. 요실금, 기본 운동 능력 상실. 말기 치매.'},
+  ]
+},
+
+psqi: {
+  title: 'PSQI',
+  fullTitle: 'Pittsburgh Sleep Quality Index',
+  comment: '7개 영역 합산. 0~5 good sleeper, 6~16 sleep disturbance, 17이상 poor sleeper',
+  isPSQI: true,
+  interpret: (s) => {
+    if(s<=5) return 'Good Sleeper';
+    if(s<=16) return 'Sleep Disturbance';
+    return 'Poor Sleeper';
+  },
+  copyFmt: (d, s, i) => `${d}/ PSQI/ ${s}/ ${i}`,
+  pdfFmt: (n, d) => `${n}PSQI${d}`,
+}
+
+};
+
+// ═══════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════
+const scores = {};
+for(const k in CLIN_SCALES) scores[k] = {};
+
+// PSQI inputs
+const psqiInputs = {
+  q1: null, q2: null, q3: null, q4: null,
+  q5a:null, q5b:null, q5c:null, q5d:null, q5e:null,
+  q5f:null, q5g:null, q5h:null, q5i:null, q5j:null,
+  q6: null, q7: null, q8: null, q9: null, q10: null
+};
+
+// MMSE state
+const mmseScores = new Array(30).fill(null);
+let gdsSelected = null;
+
+// ═══════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════
+
+function showPanel(id) {
+  document.querySelectorAll('.clin-nav-item').forEach((n,i)=>{
+    const keys = Object.keys(CLIN_SCALES);
+    n.classList.toggle('active', keys[i]===id);
+  });
+  renderPanel(id);
+  // 2번째 선택항목 자동클릭 (index=1)
+  setTimeout(()=>{
+    if(id==='mmse') return; // MMSE는 별도처리
+    if(id==='bprs') {
+      const scale = CLIN_SCALES.bprs;
+      scale.items.forEach((_,idx)=>{
+        if(scores.bprs[idx]===undefined) bprsSelect(idx,1);
+      });
+    } else if(id==='psqi') {
+      // PSQI freq items: auto-select index 1 (데이터만 설정, DOM은 renderPanel이 처리)
+      ['q5a','q5b','q5c','q5d','q5e','q5f','q5g','q5h','q5i','q5j','q6','q7','q8','q9','q10'].forEach(k=>{
+        if(psqiInputs[k]===null) psqiInputs[k] = 1;
+      });
+      renderPanel('psqi'); // 기본값 반영된 상태로 재렌더링
+    } else {
+      const scale = CLIN_SCALES[id];
+      if(!scale||!scale.items) return;
+      scale.items.forEach((item,idx)=>{
+        if(item.type==='number') return;
+        if(scores[id][idx]===undefined && item.opts && item.opts.length>1) {
+          selectScore(id,idx,1);
+        }
+      });
+    }
+  }, 50);
+}
+
+function renderPanel(id) {
+  const container = document.getElementById('mainContent');
+  if(!container) return;
+  const scale = CLIN_SCALES[id];
+  if(!scale) return;
+  // printInfoBar는 없을 수 있으므로 null 처리
+  const printBar = document.getElementById('printInfoBar');
+  const printBarHTML = printBar ? printBar.outerHTML : '';
+
+  const setContent = (html) => { container.innerHTML = printBarHTML + html; };
+
+  if(id === 'psqi') {
+    setContent(renderPSQI());
+    attachPSQIListeners();
+    return;
+  }
+  if(id === 'mmse') {
+    setContent(renderMMSE());
+    attachMMSEListeners();
+    return;
+  }
+  if(id === 'bprs') {
+    setContent(renderBPRS());
+    attachBPRSListeners();
+    return;
+  }
+
+  let html = `
+    <div class="clin-scale-header">
+      <div class="clin-scale-title">${scale.title}</div>
+      <div class="clin-scale-meta">${scale.fullTitle} &nbsp;·&nbsp; ${scale.comment}</div>
+    </div>
+  `;
+
+  scale.items.forEach((item, idx) => {
+    if(item.type === 'number') {
+      html += `
+        <div class="clin-item-card" id="card-${id}-${idx}">
+          <div class="clin-item-header"><span class="clin-item-num">${idx+1}</span>${item.q}</div>
+          <div class="clin-item-input">
+            <input type="number" class="clin-num-input" id="ninput-${id}-${idx}"
+              placeholder="${item.placeholder||''}" min="0"
+              onchange="setNumScore('${id}',${idx},this.value)">
+            <span style="font-size:12px;color:var(--text3)">${item.unit||''}</span>
+          </div>
+        </div>`;
+    } else {
+      const curScore = scores[id][idx];
+      const isScored = curScore !== undefined;
+      html += `
+        <div class="clin-item-card ${isScored?'scored':''}" id="card-${id}-${idx}">
+          <div class="clin-item-header"><span class="clin-item-num">${idx+1}</span>${item.q}</div>
+          <div class="clin-options">
+            ${item.opts.map((opt,si)=>`
+              <button class="clin-opt-btn ${curScore===si?'selected':''}"
+                onclick="selectScore('${id}',${idx},${si})">
+                <span class="clin-opt-score">${si}</span>
+                <span>${opt}</span>
+              </button>`).join('')}
+          </div>
+        </div>`;
+    }
+  });
+
+  html += renderScoreFooter(id);
+  setContent(html);
+}
+
+function renderScoreFooter(id) {
+  const scale = CLIN_SCALES[id];
+  const total = calcTotal(id);
+  const interp = scale.interpret(total);
+  return `
+    <div class="clin-score-footer">
+      <div>
+        <div class="clin-score-big">${total}</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:2px;">총점</div>
+      </div>
+      <div class="clin-score-interp">
+        <strong>${interp}</strong>
+      </div>
+      <div class="clin-score-actions">
+        <button class="btn btn-outline" onclick="copyResult('${id}')">📋 챠트 복사</button>
+        <button class="btn btn-primary" onclick="printPDF('${id}')">🖨 PDF 출력</button>
+        <button class="btn btn-success" onclick="savePDF('${id}')">💾 바로저장</button>
+      </div>
+    </div>`;
+}
+
+function calcTotal(id) {
+  const scale = CLIN_SCALES[id];
+  if(scale.isPSQI) return calcPSQI().total;
+  if(scale.isMMSE) return mmseScores.filter(s=>s===1).length;
+  const items = scale.items || [];
+  return items.reduce((sum, item, idx) => {
+    const v = scores[id][idx];
+    if(v===undefined || v===null) return sum;
+    if(item.type==='number') return sum; // days not counted in score
+    return sum + v;
+  }, 0);
+}
+
+// ═══════════════════════════════════════════════════
+// SCORE SELECTION
+// ═══════════════════════════════════════════════════
+function selectScore(scaleId, itemIdx, score) {
+  scores[scaleId][itemIdx] = score;
+  // Re-render just the card
+  const card = document.getElementById(`card-${scaleId}-${itemIdx}`);
+  const scale = CLIN_SCALES[scaleId];
+  const item = scale.items[itemIdx];
+  card.classList.add('scored');
+  card.querySelector('.clin-options').innerHTML = item.opts.map((opt,si)=>`
+    <button class="clin-opt-btn ${score===si?'selected':''}"
+      onclick="selectScore('${scaleId}',${itemIdx},${si})">
+      <span class="clin-opt-score">${si}</span>
+      <span>${opt}</span>
+    </button>`).join('');
+  // Update footer
+  updateFooter(scaleId);
+  updateBadge(scaleId);
+}
+
+function setNumScore(scaleId, itemIdx, val) {
+  scores[scaleId][itemIdx] = parseFloat(val)||0;
+}
+
+function updateFooter(id) {
+  const footer = document.querySelector('.clin-score-footer');
+  if(!footer) return;
+  const scale = CLIN_SCALES[id];
+  const total = calcTotal(id);
+  const interp = scale.interpret(total);
+  footer.querySelector('.clin-score-big').textContent = total;
+  footer.querySelector('.clin-score-interp strong').textContent = interp;
+}
+
+function updateBadge(id) {
+  const scale = CLIN_SCALES[id];
+  const badge = document.getElementById(`badge-${id}`);
+  if(!badge) return;
+  if(id==='psqi') return;
+  if(scale.isMMSE) {
+    const scored = mmseScores.filter(s=>s!==null).length;
+    if(scored>0) {
+      badge.textContent = `${scored}/30`;
+      badge.parentElement.classList.add('done');
+    }
+    return;
+  }
+  const items = scale.items||[];
+  const scoredCount = items.filter((_,i)=>scores[id][i]!==undefined).length;
+  if(scoredCount>0) {
+    badge.textContent = `${scoredCount}/${items.length}`;
+    badge.parentElement.classList.add('done');
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// BPRS (chip style)
+// ═══════════════════════════════════════════════════
+function renderBPRS() {
+  const scale = CLIN_SCALES.bprs;
+  let html = `
+    <div class="clin-scale-header">
+      <div class="clin-scale-title">${scale.title}</div>
+      <div class="clin-scale-meta">${scale.fullTitle} &nbsp;·&nbsp; ${scale.comment}</div>
+    </div>`;
+
+  scale.items.forEach((item, idx) => {
+    const cur = scores.bprs[idx];
+    html += `
+      <div class="clin-item-card ${cur!==undefined?'scored':''}" id="card-bprs-${idx}">
+        <div class="clin-item-header"><span class="clin-item-num">${idx+1}</span>${item.q}</div>
+        <div class="clin-options-row">
+          ${item.opts.map((opt,si)=>`
+            <button class="clin-opt-chip ${cur===si?'selected':''}"
+              onclick="bprsSelect(${idx},${si})">${opt}</button>`).join('')}
+        </div>
+      </div>`;
+  });
+
+  const total = calcTotal('bprs');
+  const s = scores.bprs;
+  const th = (s[3]||0)+(s[11]||0)+(s[14]||0);
+  const hs = (s[9]||0)+(s[10]||0)+(s[13]||0);
+  const ws = (s[2]||0)+(s[12]||0)+(s[15]||0);
+  const ds = (s[5]||0)+(s[16]||0);
+  const as2 = (s[1]||0)+(s[4]||0)+(s[8]||0);
+
+  html += `
+    <div class="clin-score-footer" id="bprs-footer">
+      <div>
+        <div class="clin-score-big">${total}</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:2px;">총점</div>
+      </div>
+      <div class="clin-sub-scores" style="flex:1">
+        <div class="clin-sub-item"><span>사고장애 (4,12,15)</span><span class="clin-sub-val">${th}</span></div>
+        <div class="clin-sub-item"><span>적대의심 (10,11,14)</span><span class="clin-sub-val">${hs}</span></div>
+        <div class="clin-sub-item"><span>철퇴지연 (3,13,16)</span><span class="clin-sub-val">${ws}</span></div>
+        <div class="clin-sub-item"><span>동요흥분 (6,17)</span><span class="clin-sub-val">${ds}</span></div>
+        <div class="clin-sub-item"><span>불안우울 (2,5,9)</span><span class="clin-sub-val">${as2}</span></div>
+      </div>
+      <div class="clin-score-actions" style="flex-direction:column">
+        <button class="btn btn-outline" onclick="copyResult('bprs')">📋 챠트 복사</button>
+        <button class="btn btn-primary" onclick="printPDF('bprs')">🖨 PDF 출력</button>
+        <button class="btn btn-success" onclick="savePDF('bprs')">💾 바로저장</button>
+      </div>
+    </div>`;
+
+  return html;
+}
+
+function attachBPRSListeners() {}
+window.bprsSelect = function(idx, si) {
+  scores.bprs[idx] = si;
+  const card = document.getElementById(`card-bprs-${idx}`);
+  card.classList.add('scored');
+  card.querySelector('.clin-options-row').innerHTML = CLIN_SCALES.bprs.items[idx].opts.map((opt,s2)=>`
+    <button class="clin-opt-chip ${si===s2?'selected':''}"
+      onclick="bprsSelect(${idx},${s2})">${opt}</button>`).join('');
+  const total = calcTotal('bprs');
+  const s = scores.bprs;
+  document.querySelector('#bprs-footer .clin-score-big').textContent = total;
+  document.querySelector('#bprs-footer .clin-sub-scores').innerHTML = `
+    <div class="clin-sub-item"><span>사고장애 (4,12,15)</span><span class="clin-sub-val">${(s[3]||0)+(s[11]||0)+(s[14]||0)}</span></div>
+    <div class="clin-sub-item"><span>적대의심 (10,11,14)</span><span class="clin-sub-val">${(s[9]||0)+(s[10]||0)+(s[13]||0)}</span></div>
+    <div class="clin-sub-item"><span>철퇴지연 (3,13,16)</span><span class="clin-sub-val">${(s[2]||0)+(s[12]||0)+(s[15]||0)}</span></div>
+    <div class="clin-sub-item"><span>동요흥분 (6,17)</span><span class="clin-sub-val">${(s[5]||0)+(s[16]||0)}</span></div>
+    <div class="clin-sub-item"><span>불안우울 (2,5,9)</span><span class="clin-sub-val">${(s[1]||0)+(s[4]||0)+(s[8]||0)}</span></div>`;
+  updateBadge('bprs');
+};
+
+// ═══════════════════════════════════════════════════
+// MMSE & GDS
+// ═══════════════════════════════════════════════════
+function renderMMSE() {
+  const scale = CLIN_SCALES.mmse;
+  let lastCat = '';
+  let html = `
+    <div class="clin-scale-header">
+      <div class="clin-scale-title">${scale.title}</div>
+      <div class="clin-scale-meta">${scale.fullTitle} &nbsp;·&nbsp; ${scale.comment}</div>
+    </div>`;
+
+  html += `<div style="font-size:13px;font-weight:500;color:var(--text2);margin-bottom:14px">MMSE (Mini-Mental State Exam)</div>`;
+  scale.mmseItems.forEach((item, idx) => {
+    if(item.cat !== lastCat) {
+      html += `<div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin:16px 0 8px;padding-left:4px">${item.cat}</div>`;
+      lastCat = item.cat;
+    }
+    const cur = mmseScores[idx];
+    html += `
+      <div class="clin-item-card ${cur!==null?'scored':''}" id="mmse-card-${idx}" style="margin-bottom:8px">
+        <div style="padding:10px 18px;display:flex;align-items:center;gap:12px">
+          <span class="clin-item-num">${idx+1}</span>
+          <span style="font-size:13px;flex:1">${item.q}</span>
+          <button class="clin-opt-chip ${cur===1?'selected':''}" onclick="mmseSet(${idx},1)">맞음 (1)</button>
+          <button class="clin-opt-chip ${cur===0?'selected':''}" onclick="mmseSet(${idx},0)">틀림 (0)</button>
+        </div>
+      </div>`;
+  });
+
+  html += `<div style="font-size:13px;font-weight:500;color:var(--text2);margin:24px 0 14px">GDS (Global Deterioration Scale)</div>`;
+  html += `<div class="clin-gds-options">`;
+  scale.gdsStages.forEach(stage => {
+    html += `
+      <button class="clin-gds-opt ${gdsSelected===stage.n?'selected':''}" id="gds-${stage.n}" onclick="gdsSet(${stage.n})">
+        <span class="clin-gds-stage">단계 ${stage.n}: ${stage.label}</span>
+        ${stage.desc}
+      </button>`;
+  });
+  html += `</div>`;
+
+  const mmseTotal = mmseScores.filter(s=>s===1).length;
+  html += `
+    <div class="clin-score-footer" id="mmse-footer">
+      <div>
+        <div class="clin-score-big">${mmseTotal}</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:2px">MMSE 총점</div>
+      </div>
+      <div class="clin-score-interp">
+        <strong>GDS ${gdsSelected ? '단계 '+gdsSelected : '미선택'}</strong>
+      </div>
+      <div class="clin-score-actions">
+        <button class="btn btn-outline" onclick="copyResult('mmse')">📋 챠트 복사</button>
+        <button class="btn btn-primary" onclick="printPDF('mmse')">🖨 PDF 출력</button>
+        <button class="btn btn-success" onclick="savePDF('mmse')">💾 바로저장</button>
+      </div>
+    </div>`;
+  return html;
+}
+
+function attachMMSEListeners() {}
+window.mmseSet = function(idx, val) {
+  mmseScores[idx] = val;
+  const card = document.getElementById(`mmse-card-${idx}`);
+  card.classList.add('scored');
+  card.querySelectorAll('.clin-opt-chip').forEach((btn,i)=>{
+    btn.classList.toggle('selected', i===0? val===1 : val===0);
+  });
+  const total = mmseScores.filter(s=>s===1).length;
+  document.querySelector('#mmse-footer .clin-score-big').textContent = total;
+  updateBadge('mmse');
+};
+window.gdsSet = function(n) {
+  gdsSelected = n;
+  document.querySelectorAll('.clin-gds-opt').forEach(el=>{
+    el.classList.remove('selected');
+  });
+  document.getElementById(`gds-${n}`).classList.add('selected');
+  document.querySelector('#mmse-footer .clin-score-interp strong').textContent = 'GDS 단계 '+n;
+};
+
+// ═══════════════════════════════════════════════════
+// PSQI
+// ═══════════════════════════════════════════════════
+function renderPSQI() {
+  const scale = CLIN_SCALES.psqi;
+  const freqOpts = ['지난 한달 없었다(0)','한 주에 1번보다 적게(1)','한 주에 1~2번 정도(2)','한 주에 3번 이상(3)'];
+
+  let html = `
+    <div class="clin-scale-header">
+      <div class="clin-scale-title">${scale.title}</div>
+      <div class="clin-scale-meta">${scale.fullTitle} &nbsp;·&nbsp; ${scale.comment}</div>
+    </div>`;
+
+  // Q1
+  html += psqiNumItem('q1','1. 평소 취침 시간 (24시간제)','예) 23 (= 오후 11시)', 'q1-input');
+  html += psqiNumItem('q2','2. 잠드는 데 걸리는 시간 (분)','예) 30', 'q2-input');
+  html += psqiNumItem('q3','3. 평소 기상 시간 (24시간제)','예) 07', 'q3-input');
+  html += psqiNumItem('q4','4. 실제 수면 시간 (시간)','예) 5.5', 'q4-input');
+
+  // Q5
+  const q5items = [
+    ['q5a','5a. 취침 후 30분 이내에 잠들 수 없었다'],
+    ['q5b','5b. 한밤중이나 새벽에 깼다'],
+    ['q5c','5c. 화장실에 가려고 일어나야 했다'],
+    ['q5d','5d. 편안하게 숨 쉴 수가 없었다'],
+    ['q5e','5e. 기침·시끄럽게 코를 골았다'],
+    ['q5f','5f. 너무 춥다고 느꼈다'],
+    ['q5g','5g. 너무 덥다고 느꼈다'],
+    ['q5h','5h. 나쁜 꿈을 꾸었다'],
+    ['q5i','5i. 통증이 있었다'],
+    ['q5j','5j. 기타'],
+  ];
+  q5items.forEach(([key,label])=>{
+    html += psqiFreqItem(key, label, freqOpts);
+  });
+
+  // Q6-Q9 single choice
+  html += psqiFreqItem('q6','6. 전반적인 수면의 질', ['매우 좋음(0)','상당히 좋음(1)','상당히 나쁨(2)','매우 나쁨(3)']);
+  html += psqiFreqItem('q7','7. 잠이 들기 위해 약을 복용한 빈도', freqOpts);
+  html += psqiFreqItem('q8','8. 졸음 (운전·식사·사회활동 중)', freqOpts);
+  html += psqiFreqItem('q9','9. 일에 열중하는 데 문제가 있었던 빈도', freqOpts);
+  html += psqiFreqItem('q10','10. 함께 자는 사람', ['없음(0)','집에 다른 방 쓰는 사람(1)','방 같이 쓰지만 다른 침대(2)','같은 잠자리(3)']);
+
+  const psqi = calcPSQI();
+  html += `
+    <div class="clin-score-footer" id="psqi-footer">
+      <div>
+        <div class="clin-score-big">${psqi.total}</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:2px">총점</div>
+      </div>
+      <div>
+        <div class="clin-score-interp"><strong>${scale.interpret(psqi.total)}</strong></div>
+        <div class="clin-psqi-comps">
+          <div class="clin-psqi-comp"><div class="clin-psqi-comp-name">주관적 수면질</div><div class="clin-psqi-comp-val">${psqi.c1}</div></div>
+          <div class="clin-psqi-comp"><div class="clin-psqi-comp-name">수면 잠복기</div><div class="clin-psqi-comp-val">${psqi.c2}</div></div>
+          <div class="clin-psqi-comp"><div class="clin-psqi-comp-name">수면 시간</div><div class="clin-psqi-comp-val">${psqi.c3}</div></div>
+          <div class="clin-psqi-comp"><div class="clin-psqi-comp-name">수면 효율</div><div class="clin-psqi-comp-val">${psqi.c4}</div></div>
+          <div class="clin-psqi-comp"><div class="clin-psqi-comp-name">수면 방해</div><div class="clin-psqi-comp-val">${psqi.c5}</div></div>
+          <div class="clin-psqi-comp"><div class="clin-psqi-comp-name">수면제 사용</div><div class="clin-psqi-comp-val">${psqi.c6}</div></div>
+          <div class="clin-psqi-comp"><div class="clin-psqi-comp-name">낮 기능 장애</div><div class="clin-psqi-comp-val">${psqi.c7}</div></div>
+        </div>
+      </div>
+      <div class="clin-score-actions" style="flex-direction:column">
+        <button class="btn btn-outline" onclick="copyResult('psqi')">📋 챠트 복사</button>
+        <button class="btn btn-primary" onclick="printPDF('psqi')">🖨 PDF 출력</button>
+        <button class="btn btn-success" onclick="savePDF('psqi')">💾 바로저장</button>
+      </div>
+    </div>`;
+
+  return html;
+}
+
+function psqiNumItem(key, label, ph, inputId) {
+  const curVal = psqiInputs[key] !== null ? psqiInputs[key] : '';
+  return `
+    <div class="clin-item-card ${curVal !== '' ? 'scored' : ''}">
+      <div class="clin-item-header" style="padding-bottom:4px">${label}</div>
+      <div class="clin-item-input">
+        <input type="number" class="clin-num-input" placeholder="${ph}" id="psqi-${key}"
+          value="${curVal}"
+          oninput="psqiNumSet('${key}', parseFloat(this.value)||0)">
+      </div>
+    </div>`;
+}
+function psqiFreqItem(key, label, opts) {
+  const cur = psqiInputs[key];
+  return `
+    <div class="clin-item-card ${cur!==null?'scored':''}">
+      <div class="clin-item-header" style="padding-bottom:4px">${label}</div>
+      <div class="clin-options-row" data-psqi-key="${key}">
+        ${opts.map((opt,si)=>`<button class="clin-opt-chip ${cur===si?'selected':''}"
+          onclick="psqiSet('${key}',${si})">${opt}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function attachPSQIListeners() {
+  // Restore number input values after re-render
+  ['q1','q2','q3','q4'].forEach(key => {
+    const el = document.getElementById(`psqi-${key}`);
+    if(el && psqiInputs[key] !== null) el.value = psqiInputs[key];
+  });
+}
+window.psqiNumSet = function(key, val) {
+  psqiInputs[key] = val;
+  updatePSQIFooter();
+};
+window.psqiSet = function(key, val) {
+  psqiInputs[key] = val;
+  // 칩 버튼 선택 상태만 업데이트 (renderPanel 재호출 없이)
+  const container = document.querySelector(`[data-psqi-key="${key}"]`);
+  if(container) {
+    container.querySelectorAll('.clin-opt-chip').forEach((btn, i) => {
+      btn.classList.toggle('selected', i === val);
+    });
+    // 부모 item-card scored 처리
+    const card = container.closest('.clin-item-card');
+    if(card) card.classList.add('scored');
+  }
+  updatePSQIFooter();
+};
+
+function updatePSQIFooter() {
+  const footer = document.getElementById('psqi-footer');
+  if(!footer) return;
+  const psqi = calcPSQI();
+  footer.querySelector('.clin-score-big').textContent = psqi.total;
+  footer.querySelector('.clin-score-interp strong').textContent = CLIN_SCALES.psqi.interpret(psqi.total);
+  const comps = footer.querySelectorAll('.clin-psqi-comp-val');
+  [psqi.c1,psqi.c2,psqi.c3,psqi.c4,psqi.c5,psqi.c6,psqi.c7].forEach((v,i)=>comps[i].textContent=v);
+}
+
+function calcPSQI() {
+  const pi = psqiInputs;
+  // C1
+  const c1 = pi.q6 !== null ? pi.q6 : 0;
+  // C2
+  let q2score = 0;
+  const q2val = pi.q2||0;
+  if(q2val<=15) q2score=0; else if(q2val<=30) q2score=1; else if(q2val<=60) q2score=2; else q2score=3;
+  const c2sum = q2score + (pi.q5a||0);
+  const c2 = c2sum===0?0 : c2sum<=2?1 : c2sum<=4?2 : 3;
+  // C3
+  const sl = pi.q4||0;
+  const c3 = sl>=7?0 : sl>=6?1 : sl>=5?2 : 3;
+  // C4
+  let c4 = 0;
+  if(pi.q1!==null && pi.q3!==null && pi.q4!==null) {
+    let bedHrs = pi.q3 - pi.q1;
+    if(bedHrs<=0) bedHrs+=24;
+    if(bedHrs>0) {
+      const eff = (pi.q4/bedHrs)*100;
+      c4 = eff>=85?0 : eff>=75?1 : eff>=65?2 : 3;
+    }
+  }
+  // C5
+  const c5sum = ['q5b','q5c','q5d','q5e','q5f','q5g','q5h','q5i','q5j'].reduce((a,k)=>a+(pi[k]||0),0);
+  const c5 = c5sum===0?0 : c5sum<=9?1 : c5sum<=18?2 : 3;
+  // C6
+  const c6 = pi.q7!==null?pi.q7:0;
+  // C7
+  const c7sum = (pi.q8||0)+(pi.q9||0);
+  const c7 = c7sum===0?0 : c7sum<=2?1 : c7sum<=4?2 : 3;
+
+  return {c1,c2,c3,c4,c5,c6,c7, total:c1+c2+c3+c4+c5+c6+c7};
+}
+
+// ═══════════════════════════════════════════════════
+// COPY & PDF
+// ═══════════════════════════════════════════════════
+function copyResult(id) {
+  const date = document.getElementById('ptDate').value || '날짜미입력';
+  const scale = CLIN_SCALES[id];
+  let text = '';
+
+  if(id === 'bprs') {
+    const total = calcTotal('bprs');
+    text = scale.copyFmt(date, total, '', scores.bprs);
+  } else if(id === 'mmse') {
+    const mmseTotal = mmseScores.filter(s=>s===1).length;
+    const stage = gdsSelected || '미선택';
+    text = scale.copyFmt(date, mmseTotal, stage);
+  } else if(id === 'psqi') {
+    const psqi = calcPSQI();
+    const interp = scale.interpret(psqi.total);
+    text = scale.copyFmt(date, psqi.total, interp);
+  } else {
+    const total = calcTotal(id);
+    const interp = scale.interpret(total);
+    text = scale.copyFmt(date, total, interp);
+  }
+
+  navigator.clipboard.writeText(text).then(()=>{
+    showToast('클립보드에 복사되었습니다:\n' + text);
+  }).catch(()=>{
+    showToast('복사 내용:\n' + text);
+  });
+}
+
+// ── PDF 공통 헬퍼: 척도 콘텐츠를 독립 HTML로 빌드 ──
+function buildClinPdfHTML(id) {
+  const ptNum = document.getElementById('ptNum').value || '환자번호';
+  const date  = document.getElementById('ptDate').value  || '날짜';
+  const scale = CLIN_SCALES[id];
+  const filename = scale.pdfFmt(ptNum, date);
+
+  const mainEl = document.getElementById('mainContent');
+  if(!mainEl) { showToast('콘텐츠를 찾을 수 없습니다.'); return null; }
+  const clone = mainEl.cloneNode(true);
+
+  // ── 선택 항목을 텍스트로 변환하고 나머지 제거 ──
+  // 1) 일반 opt-btn: 선택된 것 텍스트로, 나머지 제거
+  clone.querySelectorAll('.clin-options, .clin-options-row, .clin-gds-options').forEach(container => {
+    const selected = container.querySelector('.selected');
+    if (selected) {
+      // 선택된 항목의 텍스트만 추출
+      const scoreEl = selected.querySelector('.clin-opt-score');
+      const scoreText = scoreEl ? scoreEl.textContent.trim() : '';
+      // 전체 텍스트에서 점수 부분 제거
+      let label = '';
+      selected.childNodes.forEach(node => {
+        if (node !== scoreEl && node.nodeType === Node.TEXT_NODE) label += node.textContent;
+        else if (node !== scoreEl && node.nodeType === Node.ELEMENT_NODE) label += node.textContent;
+      });
+      label = label.trim();
+      const answer = scoreText ? `[${scoreText}점] ${label}` : label;
+      const div = document.createElement('div');
+      div.className = 'pdf-answer';
+      div.textContent = answer;
+      container.parentNode.replaceChild(div, container);
+    } else {
+      // 미선택 → 빈 표시
+      const div = document.createElement('div');
+      div.className = 'pdf-answer pdf-no-answer';
+      div.textContent = '(미입력)';
+      container.parentNode.replaceChild(div, container);
+    }
+  });
+
+  // 2) 숫자 입력 (WHODAS 등): input value 텍스트로
+  clone.querySelectorAll('.clin-item-input').forEach(container => {
+    const input = container.querySelector('input');
+    const unit  = container.querySelector('span');
+    const val   = input ? input.value : '';
+    const unitTxt = unit ? unit.textContent.trim() : '';
+    const div = document.createElement('div');
+    div.className = 'pdf-answer';
+    div.textContent = val ? `${val} ${unitTxt}` : '(미입력)';
+    container.parentNode.replaceChild(div, container);
+  });
+
+  // 3) PSQI 숫자 입력 (q1~q4)
+  clone.querySelectorAll('.clin-num-input').forEach(input => {
+    const val = input.value;
+    const span = document.createElement('span');
+    span.className = 'pdf-answer';
+    span.textContent = val || '(미입력)';
+    input.parentNode.replaceChild(span, input);
+  });
+
+  // 4) 나머지 버튼/액션 제거
+  clone.querySelectorAll('.clin-score-actions, #printInfoBar').forEach(el => el.remove());
+
+  const css = `
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a1f36;padding:18px 22px;font-size:13px;}
+.print-hdr{display:flex;justify-content:space-between;font-size:11px;color:#555;border-bottom:1px solid #ccc;padding-bottom:6px;margin-bottom:14px;}
+.clin-scale-header{margin-bottom:12px;}
+.clin-scale-title{font-size:16px;font-weight:700;margin-bottom:2px;}
+.clin-scale-meta{font-size:11px;color:#666;margin-bottom:4px;}
+.clin-item-card{background:#fff;border:1px solid #d0d6e8;border-radius:7px;margin-bottom:4px;overflow:hidden;}
+.clin-item-card.scored{border-left:3px solid #2563eb;}
+.clin-item-header{padding:6px 12px 3px;font-size:11px;font-weight:600;color:#1a1f36;}
+.clin-item-num{display:inline-block;width:16px;height:16px;background:#e8edf8;border-radius:50%;text-align:center;line-height:16px;font-size:9px;color:#2563eb;margin-right:5px;font-weight:700;}
+/* 선택된 답변 텍스트 */
+.pdf-answer{padding:4px 14px 8px;font-size:11px;color:#1a1f36;font-weight:600;}
+.pdf-no-answer{color:#aaa;font-weight:400;font-style:italic;}
+/* 점수 footer */
+.clin-score-footer{background:#f0f4ff;border:1.5px solid #2563eb;border-radius:9px;padding:12px 16px;margin-top:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.clin-score-big{font-size:30px;font-weight:800;color:#2563eb;line-height:1;}
+.clin-score-interp{font-size:13px;color:#4a5278;}
+.clin-score-interp strong{color:#1a1f36;font-size:14px;font-weight:700;}
+.clin-score-actions{display:none!important;}
+/* BPRS sub-scores */
+.clin-sub-scores{background:#f0f2f8;border:1px solid #d0d6e8;border-radius:6px;padding:7px 10px;display:flex;flex-direction:column;gap:3px;font-size:10px;color:#4a5278;flex:1;}
+.clin-sub-item{display:flex;justify-content:space-between;gap:8px;}
+.clin-sub-val{font-weight:700;color:#1a1f36;}
+/* PSQI comps */
+.clin-psqi-comps{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.clin-psqi-comp{background:#f0f2f8;border:1px solid #d0d6e8;border-radius:5px;padding:5px 8px;text-align:center;min-width:65px;}
+.clin-psqi-comp-val{font-size:14px;font-weight:700;color:#2563eb;}
+.clin-psqi-comp-name{font-size:9px;color:#6b7280;margin-top:1px;}
+/* GDS */
+.clin-gds-stage{font-size:10px;font-weight:700;display:block;margin-bottom:1px;}
+/* 숫자 입력 표시 */
+.pdf-answer.pdf-answer{display:block;}
+/* PSQI item-input wrapper */
+.clin-item-input .pdf-answer{padding:4px 0 6px;}
+/* hide all buttons */
+button{display:none!important;}
+input{display:none!important;}
+@media print{@page{size:A4 portrait;margin:10mm 12mm;}*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}body{padding:0;}}`;
+
+  const body = `<div class="print-hdr"><span>환자번호: ${ptNum} &nbsp; 검사날짜: ${date}</span><span style="font-weight:700">${filename}</span></div>${clone.outerHTML}`;
+
+  return { ptNum, date, filename, css, body };
+}
+
+// 팝업 없이 Blob URL → hidden iframe으로 인쇄
+function printPDF(id) {
+  const d = buildClinPdfHTML(id);
+  if(!d) return;
+  const scr = '<scr'+'ipt>window.onload=function(){window.focus();window.print();};</'+'script>';
+  const html = `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><title>${d.filename}</title><style>${d.css}</style></head><body>${d.body}</body></html>${scr}`;
+  _openPrintFrame(html, d.filename);
+}
+
+// 바로저장: Blob URL → 새 탭 (팝업 차단 없음)
+function savePDF(id) {
+  const d = buildClinPdfHTML(id);
+  if(!d) return;
+  const scr = '<scr'+'ipt>window.onload=function(){window.focus();window.print();setTimeout(function(){window.close();},2000);};</'+'script>';
+  const html = `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><title>${d.filename}</title><style>${d.css}</style></head><body>${d.body}</body></html>${scr}`;
+  _openPrintFrame(html, d.filename);
+}
+
+function _openPrintFrame(html, filename) {
+  // Blob URL 방식 — 현재 페이지와 완전히 분리된 새 탭
+  try {
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href   = url;
+    a.target = '_blank';
+    a.rel    = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+    showToast(`📄 새 탭에서 인쇄 다이얼로그가 열립니다. (파일명: ${filename})`);
+  } catch(e) {
+    showToast('PDF 생성 실패: ' + e.message);
+  }
+}
+
+
+function resetAllClin() {
+  if(!confirm('모든 검사 결과를 초기화하시겠습니까?')) return;
+  for(const k in scores) for(const i in scores[k]) delete scores[k][i];
+  mmseScores.fill(null);
+  gdsSelected = null;
+  for(const k in psqiInputs) psqiInputs[k] = null;
+  document.querySelectorAll('.clin-nav-item').forEach(n=>n.classList.remove('done'));
+  // showPanel deferred to clinLogin
+  showToast('초기화되었습니다.');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('clin-toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(()=>{ t.style.display = 'none'; }, 3500);
+}
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+// showPanel deferred to clinLogin
+
+
+// ═══════════════════════════════════════
+// 대리처방 & 초진 통합 로직
+// ═══════════════════════════════════════
+const SHEET_WEB_APP_URL2 = "https://script.google.com/macros/s/AKfycbzFR4dqmK32DDSHf8s6D0IJzmOFJYakSyBFOCx5MXrcb-zA5XMs9Dk3cBKNkzBCzOc/exec";
+
+// ─ 라디오 아이템 스타일 주입 ─
+(function(){
+  const s = document.createElement('style');
+  s.textContent = `.dr2-radio-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1.5px solid #d8d0c4;border-radius:10px;cursor:pointer;transition:all 0.18s;background:white;font-size:0.93rem;line-height:1.55;margin-bottom:0}.dr2-radio-item:hover{border-color:#2a5a8c;background:#f0f6ff}.dr2-radio-item.selected{border-color:#1a3a5c;background:#eef4fb}.dr2-radio-item input[type=radio]{width:20px;height:20px;min-width:20px;margin-top:1px;accent-color:#1a3a5c;cursor:pointer;padding:0}.cj2-agree-checked{border-color:#27ae60 !important;background:#f0fff6 !important}`;
+  document.head.appendChild(s);
+})();
+
+// ─ 유틸 ─
+function dr2Val(id){return document.getElementById(id)?.value.trim()||'';}
+function dr2Radio(name){const el=document.querySelector(`[name="${name}"]:checked`);return el?el.value:'';}
+function dr2ShowErr(id,show){const el=document.getElementById(id);if(el)el.style.display=show?'block':'none';}
+function dr2TodayStr(){const d=new Date();return String(d.getFullYear()).slice(2)+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');}
+function dr2FullDate(){return new Date().toLocaleString('ko-KR',{timeZone:'Asia/Seoul'});}
+
+// ─ 범용 캔버스 서명 초기화 ─
+const dr2SigState={drawn:false};
+const cj2SigStateInner={drawn:false};
+
+function makeSignatureCanvas(canvasId, stateObj, color){
+  color = color||'#1a3a5c';
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return;
+
+  // 이벤트 리스너 중복 방지: 기존 리스너 제거를 위해 clone
+  const fresh = canvas.cloneNode(true);
+  canvas.parentNode.replaceChild(fresh, canvas);
+  const c = document.getElementById(canvasId);
+  const ctx = c.getContext('2d');
+
+  // 실제 표시 너비로 캔버스 픽셀 크기 설정
+  function setSize(){
+    const w = c.getBoundingClientRect().width || c.parentElement.getBoundingClientRect().width || 640;
+    if(w > 0 && c.width !== Math.round(w)){
+      c.width = Math.round(w);
+      c.height = 160;
+    }
+  }
+  setSize();
+
+  let drawing = false;
+  function getPos(e){
+    const rect = c.getBoundingClientRect();
+    const src = e.touches ? e.touches[0] : e;
+    // 실제 픽셀 좌표 → 캔버스 좌표 (DPR 대응)
+    const scaleX = c.width / rect.width;
+    const scaleY = c.height / rect.height;
+    return {x:(src.clientX - rect.left)*scaleX, y:(src.clientY - rect.top)*scaleY};
+  }
+  function start(e){
+    setSize();
+    drawing=true;
+    const p=getPos(e);
+    ctx.beginPath();ctx.moveTo(p.x,p.y);
+    e.preventDefault();
+  }
+  function draw(e){
+    if(!drawing)return;
+    e.preventDefault();
+    const p=getPos(e);
+    ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle=color;
+    ctx.lineTo(p.x,p.y);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(p.x,p.y);
+    stateObj.drawn=true;
+  }
+  function end(){drawing=false;}
+  c.addEventListener('mousedown',start);
+  c.addEventListener('mousemove',draw);
+  c.addEventListener('mouseup',end);
+  c.addEventListener('mouseleave',end);
+  c.addEventListener('touchstart',start,{passive:false});
+  c.addEventListener('touchmove',draw,{passive:false});
+  c.addEventListener('touchend',end);
+}
+
+function dr2InitCanvas(){makeSignatureCanvas('dr2-sig-canvas', dr2SigState);}
+function dr2ClearSig(){
+  const c=document.getElementById('dr2-sig-canvas');
+  if(c){c.getContext('2d').clearRect(0,0,c.width,c.height);}
+  dr2SigState.drawn=false;
+}
+
+// ─ 대리처방 차트 ─
+function drProceedChart(){
+  const v=document.getElementById('dr-chart2').value.trim();
+  if(!v){toast('차트번호를 입력해주세요.');return;}
+  document.getElementById('dr-chart-input-wrap2').style.display='none';
+  document.getElementById('dr-chart-locked2').style.display='block';
+  document.getElementById('dr-chart-display2').textContent='차트번호 등록됨 ✅';
+  document.getElementById('dr-form-body2').style.display='block';
+  setTimeout(()=>dr2InitCanvas(),200);
+  toast('차트번호 확인. 이후 항목을 작성해주세요.');
+}
+function drEditChart(){
+  document.getElementById('dr-chart-input-wrap2').style.display='block';
+  document.getElementById('dr-chart-locked2').style.display='none';
+}
+
+// ─ 대리처방 라디오 ─
+function dr2SelectRadio(item,name){
+  document.querySelectorAll(`[name="${name}"]`).forEach(r=>{r.closest('.dr2-radio-item').classList.remove('selected');});
+  item.classList.add('selected');
+  item.querySelector('input[type="radio"]').checked=true;
+}
+
+// ─ 대리처방 PDF HTML ─
+function buildDr2PdfHtml(data,sigDataUrl){
+  const today=new Date().toLocaleDateString('ko-KR');
+  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><title>${data.filename}</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet"><style>body{font-family:'Noto Sans KR',sans-serif;max-width:720px;margin:30px auto;padding:0 20px;color:#111;font-size:14px}h1{text-align:center;font-family:'Noto Serif KR',serif;font-size:20px;letter-spacing:.12em;margin-bottom:20px}table{width:100%;border-collapse:collapse;margin-bottom:0}td{padding:9px 12px;border:1px solid #555;vertical-align:middle;line-height:1.5}.th{background:#f0f0f0;font-weight:700;text-align:center;width:90px}.th-big{background:#f0f0f0;font-weight:700;text-align:center;writing-mode:vertical-lr;width:44px;letter-spacing:.25em;font-size:13px;vertical-align:middle}.hl{background:#ffff00;font-weight:700}.reason-box{background:#ffff00;font-weight:700;padding:14px 16px;line-height:1.7}.law-text{margin:18px 0;font-size:13px;line-height:1.9;font-weight:700}.sig-table{width:100%;border-collapse:collapse;margin-top:18px}.sig-table td{border:1px solid #555;padding:12px 16px;vertical-align:middle}.sig-img{max-width:180px;max-height:70px;border:1px solid #ddd;border-radius:4px}.notice-box{margin-top:18px;border:2px solid #555}.notice-title{background:#555;color:white;text-align:center;padding:8px;font-weight:700;letter-spacing:.2em;font-size:14px}.notice-content{padding:12px 16px;font-size:12px;line-height:1.8}.notice-bold{font-weight:700;font-size:13px;color:#c00;text-align:center;display:block;margin-bottom:8px}.date-line{text-align:right;margin:10px 0 6px;font-size:13px}@media print{.no-print{display:none}body{margin:10px}}</style></head><body>
+<h1>처방전 대리수령 신청서</h1>
+<table>
+<tr><td class="th-big" rowspan="3">대리수령자</td><td class="th">성&nbsp;&nbsp;&nbsp;&nbsp;명</td><td class="hl">${data.visitorName}</td><td class="th">연&nbsp;&nbsp;락&nbsp;&nbsp;처</td><td class="hl">${data.visitorPhone}</td></tr>
+<tr><td class="th">생년월일</td><td class="hl">${data.visitorBirth}</td><td class="th">환자와의관계</td><td class="hl">${data.relation}</td></tr>
+<tr><td class="th">주&nbsp;&nbsp;&nbsp;&nbsp;소</td><td class="hl" colspan="3">${data.visitorAddr}</td></tr>
+<tr><td class="th-big" rowspan="3">환자</td><td class="th">성&nbsp;&nbsp;&nbsp;&nbsp;명</td><td class="hl">${data.patientName}</td><td class="th">연&nbsp;&nbsp;락&nbsp;&nbsp;처</td><td class="hl">${data.patientPhone}</td></tr>
+<tr><td class="th">생년월일</td><td class="hl" colspan="3">${data.patientBirth}</td></tr>
+<tr><td class="th">주&nbsp;&nbsp;&nbsp;&nbsp;소</td><td class="hl" colspan="3">${data.patientAddr}</td></tr>
+<tr><td class="th-big">대리수령사유</td><td colspan="4" class="reason-box">${data.reason}</td></tr>
+</table>
+<div class="law-text">의료법 제 17조의2제2항 및 같은 법 시행규칙 제11조의2제1항에 따라 위와 같이 처방전 대리 수령을 신청합니다.</div>
+<div class="date-line">${today}</div>
+<table class="sig-table">
+<tr><td style="width:120px;text-align:center;font-weight:700">환&nbsp;&nbsp;&nbsp;자</td><td></td><td style="text-align:center;color:#888;font-size:12px">(자필서명)</td><td style="width:50px"></td></tr>
+<tr><td style="text-align:center;font-weight:700">처방전 수령인</td><td class="hl" style="font-weight:700">${data.visitorName}</td><td style="text-align:center;color:#888;font-size:12px">(자필서명)</td><td style="text-align:center;padding:6px"><img src="${sigDataUrl}" class="sig-img" alt="서명"></td></tr>
+</table>
+<div class="notice-box"><div class="notice-title">유 의 사 항</div><div class="notice-content"><span class="notice-bold">※ 대리처방 여부는 의학적 판단에 따른 의료인 재량으로 불가 할 수 있습니다.</span>1. 환자 또는 대리수령자가 아닌 사람이 처방전을 수령하는 동 「의료법」 제17조의2제2항을 위반하여 처방전을 수령하는 경우 같은 법 제90조에 따라 500만원 이하의 벌금에 처해질 수 있습니다.<br><br>2. 신청인은 다음 각 목의 서류를 함께 제시해야 합니다.<br>가. 대리수령자의 신분증 또는 그 사본<br>나. 환자와의 관계를 증명할 수 있는 다음의 구분에 따른 서류<br>1) 환자의 직계존속·비속, 직계비속의 배우자, 배우자, 배우자의 직계존속, 형제자매: 가족관계증명서, 주민등록표 동본 등 친족관계임을 확인할 수 있는 서류<br>2) 「노인복지법」 제34조에 따른 노인의료복지시설에서 근무하는 사람: 노인의료복지시설에서 발급한 재직증명서<br>3) 「장애인복지법」 제58조에 따른 장애인 거주시설에서 근무하는 사람: 장애인 거주시설에서 발급한 재직증명서<br>다. 환자의 신분증 또는 그 사본. 다만, 「주민등록법」 제24조제1항에 따른 주민등록증이 발급되지 않은 만 17세 미만의 환자는 제외합니다.</div></div>
+<br><button class="no-print" onclick="window.print()" style="padding:12px 28px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:15px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:10px">🖨️ 인쇄 / PDF 저장</button>
+</body></html>`;
+}
+
+// ─ 대리처방 제출 ─
+async function dr2Submit(){
+  let valid=true;
+  const vn=dr2Val('dr2-visitor-name');dr2ShowErr('dr2-visitor-name-err',!vn);if(!vn)valid=false;
+  const vp=dr2Val('dr2-visitor-phone');dr2ShowErr('dr2-visitor-phone-err',!vp);if(!vp)valid=false;
+  const vb=dr2Val('dr2-visitor-birth');dr2ShowErr('dr2-visitor-birth-err',vb.length!==8);if(vb.length!==8)valid=false;
+  const va=dr2Val('dr2-visitor-addr');dr2ShowErr('dr2-visitor-addr-err',!va);if(!va)valid=false;
+  const rel=dr2Radio('dr2-relation');dr2ShowErr('dr2-relation-err',!rel);if(!rel)valid=false;
+  const pn=dr2Val('dr2-patient-name');dr2ShowErr('dr2-patient-name-err',!pn);if(!pn)valid=false;
+  const pp=dr2Val('dr2-patient-phone');dr2ShowErr('dr2-patient-phone-err',!pp);if(!pp)valid=false;
+  const pb=dr2Val('dr2-patient-birth');dr2ShowErr('dr2-patient-birth-err',pb.length!==8);if(pb.length!==8)valid=false;
+  const pa=dr2Val('dr2-patient-addr');dr2ShowErr('dr2-patient-addr-err',!pa);if(!pa)valid=false;
+  const rsn=dr2Radio('dr2-reason');dr2ShowErr('dr2-reason-err',!rsn);if(!rsn)valid=false;
+  dr2ShowErr('dr2-sig-err',!dr2SigState.drawn);if(!dr2SigState.drawn)valid=false;
+  if(!valid){toast('⚠️ 누락된 항목을 확인해주세요.');return;}
+  const chart=document.getElementById('dr-chart2').value.trim();
+  const dateStr=dr2TodayStr();
+  const filename=chart+vn+pn+'대리수령'+dateStr;
+  const sigDataUrl=document.getElementById('dr2-sig-canvas').toDataURL('image/png');
+  const data={chart,visitorName:vn,visitorPhone:vp,visitorBirth:vb,visitorAddr:va,relation:rel,patientName:pn,patientPhone:pp,patientBirth:pb,patientAddr:pa,reason:rsn,filename};
+  const win=window.open('','_blank');
+  if(!win){toast('팝업 차단을 해제해주세요.');return;}
+  win.document.write(buildDr2PdfHtml(data,sigDataUrl));
+  win.document.close();
+  try{
+    // ── 서명 Storage 업로드 → DB INSERT ──
+    const sigUrl = await uploadSignature(sigDataUrl, filename);
+    await insertToSupabase('daeri', {
+      chart,
+      visitor_name:  vn, visitor_phone: vp, visitor_birth: vb, visitor_addr: va,
+      relation:      rel,
+      patient_name:  pn, patient_phone: pp, patient_birth: pb, patient_addr: pa,
+      reason:        rsn,
+      signature_url: sigUrl,
+      filename
+    });
+    // ── 구글 시트 전송 ──
+    await fetch(SHEET_WEB_APP_URL2,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({sheet:'대리',row:[dr2FullDate(),chart,vn,vp,vb,va,rel,pn,pp,pb,pa,rsn,sigUrl||'(드라이브링크)',filename],signature:sigDataUrl})});
+    toast('✅ 저장 완료!');
+  }catch(e){toast('📄 PDF 저장 완료 (네트워크 오류)'); console.error(e);}
+}
+
+function dr2ResetForm(){
+  if(!confirm('모든 입력 내용을 초기화할까요?'))return;
+  ['dr2-visitor-name','dr2-visitor-phone','dr2-visitor-birth','dr2-visitor-addr','dr2-patient-name','dr2-patient-phone','dr2-patient-birth','dr2-patient-addr'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.querySelectorAll('[name="dr2-relation"],[name="dr2-reason"]').forEach(r=>{r.checked=false;r.closest('.dr2-radio-item')?.classList.remove('selected');});
+  dr2ClearSig();drEditChart();document.getElementById('dr-chart2').value='';
+  document.getElementById('dr-form-body2').style.display='none';
+  toast('초기화 완료');
+}
+
+// ─ 초진접수 캔버스 ─
+const cj2SigState = cj2SigStateInner;
+function cj2InitCanvas(){makeSignatureCanvas('cj2-sig-canvas', cj2SigState);}
+function cj2ClearSig(){
+  const c=document.getElementById('cj2-sig-canvas');
+  if(c){c.getContext('2d').clearRect(0,0,c.width,c.height);}
+  cj2SigState.drawn=false;
+}
+
+// ─ 초진 차트 ─
+function cj2ProceedChart(){
+  const v=document.getElementById('cj2-chart').value.trim();
+  if(!v){toast('차트번호를 입력해주세요.');return;}
+  document.getElementById('cj2-chart-input-wrap').style.display='none';
+  document.getElementById('cj2-chart-locked').style.display='block';
+  document.getElementById('cj2-chart-display').textContent='차트번호 등록됨 ✅';
+  document.getElementById('cj2-form-body').style.display='block';
+  setTimeout(()=>cj2InitCanvas(),200);
+  toast('차트번호 확인. 이후 항목을 작성해주세요.');
+}
+function cj2EditChart(){
+  document.getElementById('cj2-chart-input-wrap').style.display='block';
+  document.getElementById('cj2-chart-locked').style.display='none';
+}
+
+// ─ 초진 동의 ─
+function cj2ToggleAgree(id){
+  const cb=document.getElementById(id);
+  cb.checked=!cb.checked;
+  const lbl=document.getElementById(id+'-label');
+  if(lbl){lbl.style.borderColor=cb.checked?'#27ae60':'#d8d0c4';lbl.style.background=cb.checked?'#f0fff6':'white';}
+}
+
+// ─ 초진 제출 ─
+async function cj2Submit(){
+  let valid=true;
+  const n=document.getElementById('cj2-name').value.trim();dr2ShowErr('cj2-name-err',!n);if(!n)valid=false;
+  const i1=document.getElementById('cj2-id1').value.trim();dr2ShowErr('cj2-id1-err',i1.length!==6);if(i1.length!==6)valid=false;
+  const i2=document.getElementById('cj2-id2').value.trim();dr2ShowErr('cj2-id2-err',i2.length!==7);if(i2.length!==7)valid=false;
+  const ph=document.getElementById('cj2-phone').value.trim();dr2ShowErr('cj2-phone-err',!ph);if(!ph)valid=false;
+  const ad=document.getElementById('cj2-addr').value.trim();dr2ShowErr('cj2-addr-err',!ad);if(!ad)valid=false;
+  const a1=document.getElementById('cj2-agree1').checked;const a2=document.getElementById('cj2-agree2').checked;
+  const a3=document.getElementById('cj2-agree3').checked;const a4=document.getElementById('cj2-agree4').checked;const a5=document.getElementById('cj2-agree5').checked;const a6=document.getElementById('cj2-agree6').checked;
+  dr2ShowErr('cj2-agree1-err',!a1);dr2ShowErr('cj2-agree2-err',!a2);dr2ShowErr('cj2-agree3-err',!a3);dr2ShowErr('cj2-agree4-err',!a4);dr2ShowErr('cj2-agree5-err',!a5);dr2ShowErr('cj2-agree6-err',!a6);
+  if(!a1||!a2||!a3||!a4||!a5||!a6)valid=false;
+  dr2ShowErr('cj2-sig-err',!cj2SigState.drawn);if(!cj2SigState.drawn)valid=false;
+  if(!valid){toast('⚠️ 누락된 항목을 확인해주세요.');return;}
+  const chart=document.getElementById('cj2-chart').value.trim();
+  const dateStr=dr2TodayStr();
+  const filename=`${chart}초진접수${dateStr}`;
+  const sigDataUrl=document.getElementById('cj2-sig-canvas').toDataURL('image/png');
+  const today=new Date().toLocaleDateString('ko-KR');
+  const pdfHtml=`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><title>${filename}</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet"><style>@page{size:A4 portrait;margin:10mm 12mm 8mm}html,body{margin:0;padding:0}body{font-family:'Noto Sans KR',sans-serif;color:#222;font-size:11.5px}h2{text-align:center;color:#1a3a5c;font-family:'Noto Serif KR',serif;font-size:15px;margin:0 0 2px}.sub{text-align:center;color:#888;font-size:10px;margin-bottom:8px}table{width:100%;border-collapse:collapse;margin-top:6px}td{padding:5px 8px;border:1px solid #ccc;font-size:11px;line-height:1.45}td:first-child{background:#f0f3f8;font-weight:600;color:#1a3a5c;white-space:nowrap}.info-table td:first-child{width:28%}.agree-table td:first-child{width:30%}h3{color:#1a3a5c;margin:7px 0 2px;font-size:12px;border-top:1px solid #ccc;padding-top:5px}.sig-section{margin-top:6px;display:flex;align-items:center;gap:14px;border-top:1.5px solid #1a3a5c;padding-top:5px}.sig-label{font-size:10px;color:#888;white-space:nowrap}.sig-img{height:44px;max-width:220px;border:1px solid #ddd;border-radius:4px}.footer{margin-top:4px;font-size:9.5px;color:#bbb;text-align:right}@media print{.no-print{display:none}}@media screen{body{max-width:680px;margin:20px auto;padding:0 16px}}</style></head><body>
+<h2>초진 접수 동의서</h2><p class="sub">작성일: ${today}</p>
+<table class="info-table"><tr><td>차트번호</td><td>${chart}</td><td>성명</td><td>${n}</td></tr><tr><td>주민번호 앞 6자리</td><td>${i1}</td><td>주민번호 뒤 7자리</td><td>*******</td></tr><tr><td>전화번호</td><td>${ph}</td><td>주소</td><td>${ad}</td></tr></table>
+<h3>동의 항목</h3>
+<table class="agree-table"><tr><td>6. 개인정보 수집·이용 동의</td><td>귀하의 소중한 개인정보는 의료법 및 개인정보보호법의 관련규정에 의하여 진료 및 진료 지원의 목적으로 수집 및 이용됩니다.<br><strong style="color:${a1?'#27ae60':'#c0392b'}">${a1?'✔ 동의':'✘ 미동의'}</strong></td></tr><tr><td>7. 진단서 발급 관련 동의</td><td>금일 진료 후 진단서 발급 불가하며, 최소 1~2개월의 외래 진료 후 발급 가능함을 확인합니다.<br><strong style="color:${a2?'#27ae60':'#c0392b'}">${a2?'✔ 동의':'✘ 미동의'}</strong></td></tr><tr><td>8. 본인 확인 불가 시 진료 불가 동의</td><td>주민등록증, 운전면허증 등으로 본인 확인이 되지 않을 경우 진료 불가함에 동의합니다.<br><strong style="color:${a3?'#27ae60':'#c0392b'}">${a3?'✔ 동의':'✘ 미동의'}</strong></td></tr><tr><td>9. 발급 서류 환불 불가 동의</td><td>발급된 서류는 환불이 되지 않음을 이해하고 동의합니다.<br><strong style="color:${a4?'#27ae60':'#c0392b'}">${a4?'✔ 동의':'✘ 미동의'}</strong></td></tr><tr><td>10. 상담료·검사비 발생 동의</td><td>약 처방이 없더라도 상담료 및 검사비 등이 발생됨을 이해하고 동의합니다.<br><strong style="color:${a5?'#27ae60':'#c0392b'}">${a5?'✔ 동의':'✘ 미동의'}</strong></td></tr><tr><td>11. CCTV 촬영 안내 확인</td><td>본 병원은 24시간 CCTV 촬영 중임을 알려드립니다.<br><strong style="color:${a6?'#27ae60':'#c0392b'}">${a6?'✔ 확인':'✘ 미확인'}</strong></td></tr></table>
+<div class="sig-section"><span class="sig-label">서명 (이름 정자)</span><img src="${sigDataUrl}" class="sig-img" alt="서명"><span class="footer" style="margin-left:auto">${filename} | ${today}</span></div>
+<button class="no-print" onclick="window.print()" style="margin-top:14px;padding:12px 28px;background:#1a3a5c;color:white;border:none;border-radius:8px;font-size:15px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">🖨️ 인쇄 / PDF 저장</button>
+</body></html>`;
+  const win=window.open('','_blank');
+  if(!win){toast('팝업 차단을 해제해주세요.');return;}
+  win.document.write(pdfHtml);win.document.close();
+  try{
+    // ── 서명 Storage 업로드 → DB INSERT ──
+    const sigUrl = await uploadSignature(sigDataUrl, filename);
+    await insertToSupabase('chojin', {
+      chart, name: n, id1: i1, id2: i2, phone: ph, addr: ad,
+      agree1: a1, agree2: a2, agree3: a3, agree4: a4, agree5: a5, agree6: a6,
+      signature_url: sigUrl,
+      filename
+    });
+    // ── 구글 시트 전송 ──
+    await fetch(SHEET_WEB_APP_URL2,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({sheet:'초진',row:[dr2FullDate(),chart,n,i1,i2,ph,ad,a1?'동의':'미동의',a2?'동의':'미동의',a3?'동의':'미동의',a4?'동의':'미동의',a5?'동의':'미동의',a6?'확인':'미확인',sigUrl||'(드라이브링크)',filename],signature:sigDataUrl})});
+    toast('✅ 저장 완료!');
+  }catch(e){toast('📄 PDF 저장 완료 (네트워크 오류)'); console.error(e);}
+}
+
+function cj2ResetForm(){
+  if(!confirm('모든 입력 내용을 초기화할까요?'))return;
+  ['cj2-name','cj2-id1','cj2-id2','cj2-phone','cj2-addr'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['cj2-agree1','cj2-agree2','cj2-agree3','cj2-agree4','cj2-agree5','cj2-agree6'].forEach(id=>{
+    const cb=document.getElementById(id);if(cb)cb.checked=false;
+    const lbl=document.getElementById(id+'-label');if(lbl){lbl.style.borderColor='#d8d0c4';lbl.style.background='white';}
+  });
+  cj2ClearSig();cj2EditChart();document.getElementById('cj2-chart').value='';
+  document.getElementById('cj2-form-body').style.display='none';
+  toast('초기화 완료');
+}
+
+// ══ 잠금 해제 ══════════════════════════════════════════
+function unlockApp() {
+  document.getElementById('lock-screen').style.display = 'none';
+}
+
+// ══ 접수 조회 ══════════════════════════════════════════
+// SUPA_URL already defined above
+// SUPA_ANON, SUPA_BUCKET already defined above
+
+
+let clinUnlocked = true;
+
+function clinLogin(){
+  clinUnlocked = true;
+  document.getElementById('clin-lock').style.display = 'none';
+  document.getElementById('clin-body').style.display = 'block';
+  const now = new Date();
+  const ptDate = document.getElementById('ptDate');
+  if(ptDate && !ptDate.value){
+    ptDate.value = String(now.getFullYear()).slice(2)+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0');
+  }
+  showPanel('hamd');
+}
+
+// ═══════════════════════════════════════════════════
+// 우측 과거 기록 패널
+// ═══════════════════════════════════════════════════
+let histCache = [];
+let histTimer = null;
+
+function scheduleHistLoad(){
+  clearTimeout(histTimer);
+  histTimer = setTimeout(loadHistResults, 700);
+}
+
+async function loadHistResults(){
+  const listEl = document.getElementById('hist-list');
+  if(!listEl) return;
+  const ptNum = (document.getElementById('ptNum')?.value||'').trim();
+  const period = parseInt(document.getElementById('hist-period')?.value||'30');
+  const clinIds = Object.keys(CLIN_SCALES);
+  listEl.innerHTML = '<div class="hist-empty">불러오는 중...</div>';
+  let q = sb.from('results').select('*').in('scale_id', clinIds)
+    .order('completed_at', {ascending:false}).limit(200);
+  if(ptNum){
+    q = q.ilike('patient_name', '%'+ptNum+'%');
+  } else if(period > 0){
+    q = q.gte('completed_at', new Date(Date.now()-period*86400000).toISOString());
+  }
+  const {data} = await q;
+  histCache = data||[];
+  renderHistList(histCache);
+}
+
+function filterHistResults(){
+  const kw = (document.getElementById('hist-search')?.value||'').toLowerCase();
+  renderHistList(!kw ? histCache : histCache.filter(r=>
+    (r.patient_name||'').toLowerCase().includes(kw)||
+    (r.scale_id||'').toLowerCase().includes(kw)||
+    (r.interp||'').toLowerCase().includes(kw)
+  ));
+}
+
+function _p2(n){ return String(n).padStart(2,'0'); }
+
+function renderHistList(data){
+  const listEl = document.getElementById('hist-list');
+  if(!listEl) return;
+  if(!data||!data.length){ listEl.innerHTML='<div class="hist-empty">기록 없음</div>'; return; }
+  listEl.innerHTML = data.map(r=>{
+    const sc = CLIN_SCALES[r.scale_id];
+    const dt = new Date(r.completed_at||r.created_at||'');
+    const ts = isNaN(dt)?'' : `${String(dt.getFullYear()).slice(2)}${_p2(dt.getMonth()+1)}${_p2(dt.getDate())} ${_p2(dt.getHours())}:${_p2(dt.getMinutes())}`;
+    const cp = (r.copy_text||'').replace(/'/g,"&#39;");
+    return `<div class="hist-card-pt">
+      <div class="hist-card-top-pt">
+        <span class="hist-scale-badge-pt">${sc?.name||r.scale_id}</span>
+        <span class="hist-time-pt">${ts}</span>
+      </div>
+      <div style="display:flex;align-items:baseline">
+        <span class="hist-score-pt">${r.score}</span>
+        <span class="hist-interp-pt">${r.interp||''}</span>
+      </div>
+      <div class="hist-name-pt">${r.patient_name||''}</div>
+      <div class="hist-actions-pt">
+        <button class="hist-btn-pt load" onclick="histLoad('${r.session_id}','${r.scale_id}')">불러오기</button>
+        ${r.copy_text?`<button class="hist-btn-pt" onclick="navigator.clipboard.writeText('${cp}').then(()=>showToast('복사 완료'))">복사</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function histLoad(sessId, scaleId){
+  const {data:res} = await sb.from('results').select('*').eq('session_id',sessId).eq('scale_id',scaleId).maybeSingle();
+  if(!res){ showToast('데이터를 찾을 수 없습니다.'); return; }
+  const ptNumEl = document.getElementById('ptNum');
+  const ptDateEl = document.getElementById('ptDate');
+  if(ptNumEl && res.patient_name) ptNumEl.value = res.patient_name;
+  if(ptDateEl && res.completed_at){
+    const dt = new Date(res.completed_at);
+    if(!isNaN(dt)) ptDateEl.value = String(dt.getFullYear()).slice(2)+_p2(dt.getMonth()+1)+_p2(dt.getDate());
+  }
+  showPanel(scaleId);
+  const ans = res.answers||[];
+  try {
+    if(scaleId==='mmse'){
+      ans.slice(0,30).forEach((v,i)=>{ if(v!=null){ mmseScores[i]=v; mmseSet(i,v); } });
+      if(ans[30]!=null) gdsSet(ans[30]);
+    } else if(scaleId==='psqi'){
+      const keys=['q1','q2','q3','q4','q5a','q5b','q5c','q5d','q5e','q5f','q5g','q5h','q5i','q5j','q6','q7','q8','q9','q10'];
+      keys.forEach((k,i)=>{ if(ans[i]!=null) psqiInputs[k]=ans[i]; });
+      renderPanel('psqi');
+    } else if(scaleId==='bprs'){
+      ans.forEach((v,i)=>{ if(v!=null) bprsSelect(i,v); });
+    } else {
+      ans.forEach((v,i)=>{ if(v!=null) selectScore(scaleId,i,v); });
+    }
+  } catch(e){ console.error('불러오기 오류:',e); }
+  showToast('✅ '+(CLIN_SCALES[scaleId]?.title||scaleId)+' 불러오기 완료');
+}
+
+async function saveClinResult(){
+  const ptNum = (document.getElementById('ptNum')?.value||'').trim();
+  const ptDate = (document.getElementById('ptDate')?.value||'').trim();
+  if(!ptNum){ toast('환자번호를 입력하세요.'); return; }
+  
+  const activeNav = document.querySelector('.clin-nav-item.active');
+  if(!activeNav){ toast('검사를 선택하세요.'); return; }
+  const scaleId = (activeNav.getAttribute('onclick')||'').match(/showPanel\('(\w+)'\)/)?.[1];
+  if(!scaleId){ toast('검사를 선택하세요.'); return; }
+  
+  const scale = CLIN_SCALES[scaleId];
+  let total=0, interp='', copyText='', extraScores='';
+  
+  try {
+    if(scaleId==='psqi'){
+      const psqi=calcPSQI(); total=psqi.total; interp=scale.interpret(total);
+      copyText=scale.copyFmt(ptDate,total,interp,psqi);
+      extraScores=JSON.stringify({s1:total,display:String(total),interp});
+    } else if(scaleId==='mmse'){
+      total=mmseScores.filter(s=>s===1).length; const stage=gdsSelected||'미선택'; interp=stage;
+      copyText=scale.copyFmt(ptDate,total,stage);
+      extraScores=JSON.stringify({s1:total,display:total+'/GDS:'+stage,interp:stage});
+    } else if(scaleId==='bprs'){
+      total=calcTotal('bprs'); interp=scale.interpret?scale.interpret(total):'';
+      copyText=scale.copyFmt(ptDate,total,interp,scores.bprs);
+      extraScores=JSON.stringify({s1:total,display:String(total),interp});
+    } else {
+      total=calcTotal(scaleId); interp=scale.interpret?scale.interpret(total):'';
+      copyText=scale.copyFmt(ptDate,total,interp);
+      extraScores=JSON.stringify({s1:total,display:String(total),interp});
+    }
+  } catch(e){ toast('계산 오류: '+e.message); return; }
+
+  // copyText 빈 경우 fallback
+  if(!copyText) copyText = `${ptDate||'날짜없음'}/ ${scaleId.toUpperCase()}/ ${total}/ ${interp}`;
+  
+  // 세션 ID: c-환자번호-날짜
+  const sessId='c-'+ptNum+'-'+(ptDate||'000000');
+  const completedAt=ptDate?'20'+ptDate.slice(0,2)+'-'+ptDate.slice(2,4)+'-'+ptDate.slice(4,6)+' 00:00:00':new Date().toISOString();
+  
+  // answers 배열 생성 (scores[scaleId] 객체 → 배열)
+  let answersArr = null;
+  try {
+    const sc = CLIN_SCALES[scaleId];
+    const itemCount = sc.items ? sc.items.length : 0;
+    if(itemCount > 0) {
+      answersArr = Array.from({length: itemCount}, (_, i) => scores[scaleId][i] ?? null);
+    }
+  } catch(_) {}
+
+  // ── sessions: 없으면 insert, 있으면 scales 배열에 추가 ──
+  const {data:existSess} = await sb.from('sessions').select('id,scales').eq('id',sessId).maybeSingle();
+  if(!existSess){
+    await sb.from('sessions').insert({id:sessId,patient_name:ptNum,scales:[scaleId],status:'완료',created_at:completedAt});
+  } else {
+    const newScales=[...new Set([...(existSess.scales||[]),scaleId])];
+    await sb.from('sessions').update({scales:newScales}).eq('id',sessId);
+  }
+  
+  // ── results: 없으면 insert, 있으면 update ──
+  // (upsert 미사용 — unique constraint 없어도 동작)
+  const {data:existRes} = await sb.from('results')
+    .select('id').eq('session_id',sessId).eq('scale_id',scaleId).maybeSingle();
+
+  let saveError;
+  if(!existRes){
+    const {error:ie} = await sb.from('results').insert({
+      session_id:sessId, scale_id:scaleId, patient_name:ptNum,
+      score:total, interp,
+      copy_text:copyText, extra_scores:extraScores,
+      answers:answersArr, completed_at:completedAt
+    });
+    saveError = ie;
+  } else {
+    const {error:ue} = await sb.from('results').update({
+      score:total, interp,
+      copy_text:copyText, extra_scores:extraScores,
+      answers:answersArr, completed_at:completedAt
+    }).eq('session_id',sessId).eq('scale_id',scaleId);
+    saveError = ue;
+  }
+
+  if(saveError){ toast('저장 실패: '+saveError.message); return; }
+  toast('✅ '+scale.title+' 저장 완료! ('+ptNum+')');
+  loadHistResults();
+}
+
+// Supabase: uploadSignature and insertToSupabase (needed by search modals)
+async function uploadSignature(sigDataUrl, filename) {
+  try {
+    const res = await fetch(sigDataUrl);
+    const blob = await res.blob();
+    const safeName = filename.replace(/[^a-zA-Z0-9_\-]/g, '').slice(0, 60);
+    const path = `${safeName}_${Date.now()}.png`;
+    const uploadRes = await fetch(
+      `${SUPA_URL}/storage/v1/object/${SUPA_BUCKET}/${path}`,
+      { method:'POST', headers:{ 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Content-Type':'image/png', 'x-upsert':'true' }, body: blob }
+    );
+    if (!uploadRes.ok) return null;
+    return `${SUPA_URL}/storage/v1/object/public/${SUPA_BUCKET}/${path}`;
+  } catch(e) { return null; }
+}
+
+async function insertToSupabase(table, payload) {
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${table}`, {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=minimal' },
+      body: JSON.stringify(payload)
+    });
+    return r.ok;
+  } catch(e) { return false; }
+}
+
+let currentModalData = null;
+
+function loadSearchTab() {
+  document.getElementById('search-type').value = 'all';
+  document.getElementById('search-chart').value = '';
+  document.getElementById('search-name').value = '';
+  doSearch();
+}
+
+async function doSearch() {
+  const type  = document.getElementById('search-type').value;
+  const chart = document.getElementById('search-chart').value.trim();
+  const name  = document.getElementById('search-name').value.trim();
+  const el    = document.getElementById('search-results');
+  el.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">⏳ 조회 중...</div>';
+  const tables = type === 'all' ? ['chojin','daeri'] : [type];
+  let allRows = [];
+  for (const tbl of tables) {
+    let url = `${SUPA_URL}/rest/v1/${tbl}?order=created_at.desc&limit=100`;
+    if (chart) url += `&chart=eq.${encodeURIComponent(chart)}`;
+    if (name)  url += `&${tbl==='chojin'?'name':'visitor_name'}=ilike.*${encodeURIComponent(name)}*`;
+    try {
+      const r = await fetch(url, { headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }});
+      const rows = await r.json();
+      if (Array.isArray(rows)) allRows.push(...rows.map(row => ({...row, _table: tbl})));
+    } catch(e) {}
+  }
+  allRows.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+  if (!allRows.length) { el.innerHTML = '<div style="text-align:center;padding:30px;color:#9ca3af;">검색 결과가 없습니다.</div>'; return; }
+  el.innerHTML = allRows.map(row => {
+    const isCj  = row._table === 'chojin';
+    const nm  = isCj ? (row.name||'-') : (row.visitor_name||'-');
+    const ch = row.chart || '-';
+    const dt    = new Date(row.created_at).toLocaleString('ko-KR');
+    const badge = isCj
+      ? `<span style="background:#dbeafe;color:#1d4ed8;font-size:12px;padding:2px 8px;border-radius:10px;font-weight:700;">초진</span>`
+      : `<span style="background:#d1fae5;color:#065f46;font-size:12px;padding:2px 8px;border-radius:10px;font-weight:700;">대리</span>`;
+    return `<div onclick="openDetail('${row.id}','${row._table}')"
+      style="background:white;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:border-color 0.15s;"
+      onmouseover="this.style.borderColor='#1a3a5c'" onmouseout="this.style.borderColor='#e5e7eb'">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        ${badge}
+        <span style="font-size:15px;font-weight:700;">${nm}</span>
+        <span style="color:#9ca3af;font-size:13px;font-weight:700;margin-left:4px;">차트 ${ch}</span>
+      </div>
+      <div style="font-size:12px;color:#9ca3af;">${dt}</div>
+    </div>`;
+  }).join('');
+}
+
+async function openDetail(id, table) {
+  const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${id}`, {
+    headers: { 'apikey': SUPA_ANON, 'Authorization': `Bearer ${SUPA_ANON}` }
+  });
+  const rows = await r.json();
+  if (!rows.length) return;
+  const row = rows[0];
+  currentModalData = { row, table };
+  document.getElementById('modal-title').textContent =
+    table === 'chojin' ? `초진 접수 — ${row.name||''}` : `대리 처방 — ${row.visitor_name||''}`;
+  const dt = new Date(row.created_at).toLocaleString('ko-KR');
+  let html = '';
+  if (table === 'chojin') {
+    const idStr = (row.id1||'') + ' - ' + (row.id2||'');
+    const idRaw = (row.id1||'') + (row.id2||'');
+    const phoneRaw = (row.phone||'').replace(/^010[-\s]?/, '').replace(/[-\s]/g,'');
+    const phoneFull = (row.phone||'').replace(/[-\s]/g,'');
+    html = `<table style="width:100%;border-collapse:collapse;font-size:14px;font-weight:700;">
+      ${srTr('접수일시', dt)}${srTr('차트번호', row.chart)}${srTrCopy('성명', row.name||'')}
+      ${srTrCopy('주민번호', idStr, idRaw)}${srTrCopyPhone('전화번호', row.phone||'', phoneRaw, phoneFull)}
+      ${srTrCopy('주소', row.addr||'')}
+      ${srTr('개인정보 동의(6)', row.agree1?'✅':'❌')}${srTr('진단서 발급 동의(7)', row.agree2?'✅':'❌')}
+      ${srTr('본인확인 불가 동의(8)', row.agree3?'✅':'❌')}${srTr('서류환불 불가 동의(9)', row.agree4?'✅':'❌')}
+      ${srTr('상담료·검사비 동의(10)', row.agree5?'✅':'❌')}${srTr('CCTV 확인(11)', row.agree6?'✅':'❌')}
+    </table>
+    ${row.signature_url ? `<div style="margin-top:14px;"><div style="font-size:11px;color:#6b7280;margin-bottom:5px;">서명</div><img src="${row.signature_url}" style="border:1px solid #e5e7eb;border-radius:8px;max-width:100%;max-height:140px;background:#f9fafb;"></div>` : '<div style="color:#9ca3af;margin-top:10px;font-size:12px;">서명 이미지 없음</div>'}`;
+  } else {
+    html = `<table style="width:100%;border-collapse:collapse;font-size:14px;font-weight:700;">
+      ${srTr('접수일시', dt)}${srTr('차트번호', row.chart)}
+      <tr><td colspan="2" style="padding:6px 0;font-weight:bold;color:#2563eb;border-bottom:1px solid #f3f4f6;font-size:11px;">▸ 대리수령자</td></tr>
+      ${srTr('성명', row.visitor_name)}${srTr('연락처', row.visitor_phone)}
+      ${srTr('생년월일', row.visitor_birth)}${srTr('주소', row.visitor_addr)}
+      ${srTr('환자와의 관계', row.relation)}
+      <tr><td colspan="2" style="padding:6px 0;font-weight:bold;color:#16a34a;border-bottom:1px solid #f3f4f6;font-size:11px;">▸ 환자 정보</td></tr>
+      ${srTr('환자 성명', row.patient_name)}${srTr('환자 연락처', row.patient_phone)}
+      ${srTr('환자 생년월일', row.patient_birth)}${srTr('환자 주소', row.patient_addr)}
+      ${srTr('대리수령 사유', row.reason)}
+    </table>
+    ${row.signature_url ? `<div style="margin-top:14px;"><div style="font-size:11px;color:#6b7280;margin-bottom:5px;">서명</div><img src="${row.signature_url}" style="border:1px solid #e5e7eb;border-radius:8px;max-width:100%;max-height:140px;background:#f9fafb;"></div>` : '<div style="color:#9ca3af;margin-top:10px;font-size:12px;">서명 이미지 없음</div>'}`;
+  }
+  document.getElementById('modal-body').innerHTML = html;
+  document.getElementById('detail-modal').style.display = 'block';
+}
+
+function srTr(label, val) {
+  return `<tr style="border-bottom:1px solid #f3f4f6;"><td style="padding:7px 4px;color:#6b7280;width:120px;">${label}</td><td style="padding:7px 4px;font-weight:700;">${val||'-'}</td></tr>`;
+}
+function srTrCopyPhone(label, val, copyShort, copyFull) {
+  const ss = (copyShort||'').replace(/'/g,"\'");
+  const sf = (copyFull||'').replace(/'/g,"\'");
+  return `<tr style="border-bottom:1px solid #f3f4f6;"><td style="padding:7px 4px;color:#6b7280;width:120px;">${label}</td><td style="padding:5px 4px;"><div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;"><span style="flex:1;">${val||'-'}</span><button onclick="srCopyCell('${ss}',this)" style="background:#f0f9ff;border:1px solid #bae6fd;color:#0369a1;border-radius:5px;padding:2px 7px;font-size:10px;cursor:pointer;">📋 010제외</button><button onclick="srCopyCell('${sf}',this)" style="background:#f0fff4;border:1px solid #86efac;color:#15803d;border-radius:5px;padding:2px 7px;font-size:10px;cursor:pointer;">📋 전체</button></div></td></tr>`;
+}
+function srTrCopy(label, val, copyVal) {
+  const text = (copyVal !== undefined ? copyVal : val) || '-';
+  const safe = text.replace(/'/g,"\'");
+  return `<tr style="border-bottom:1px solid #f3f4f6;"><td style="padding:7px 4px;color:#6b7280;width:120px;">${label}</td><td style="padding:5px 4px;"><div style="display:flex;align-items:center;gap:5px;"><span style="flex:1;">${val||'-'}</span><button onclick="srCopyCell('${safe}',this)" style="background:#f0f9ff;border:1px solid #bae6fd;color:#0369a1;border-radius:5px;padding:2px 7px;font-size:10px;cursor:pointer;">📋</button></div></td></tr>`;
+}
+function srCopyCell(text, btn) {
+  if (!text || text === '-') return;
+  const orig = btn.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅'; setTimeout(() => { btn.textContent = orig; }, 2000);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    btn.textContent = '✅'; setTimeout(() => { btn.textContent = orig; }, 2000);
+  });
+}
+
+function closeModal() { document.getElementById('detail-modal').style.display = 'none'; }
+
+function printModalPDF() {
+  if (!currentModalData) return;
+  const { row, table } = currentModalData;
+  const name = table === 'chojin' ? (row.name||'') : (row.visitor_name||'');
+  const dt = new Date(row.created_at).toLocaleString('ko-KR');
+  const content = document.getElementById('modal-body').innerHTML;
+  const chart = (row.chart || '').trim();
+  const dateObj = new Date(row.created_at);
+  const yy = String(dateObj.getFullYear()).slice(2);
+  const mm = String(dateObj.getMonth()+1).padStart(2,'0');
+  const dd = String(dateObj.getDate()).padStart(2,'0');
+  const dateStr = yy + mm + dd;
+  const pdfFilename = table === 'chojin' ? `${chart}신환동의서${dateStr}` : `${chart}대리처방${dateStr}`;
+  const w = window.open('','_blank');
+  if (!w) { showToast('팝업 차단을 해제해주세요.'); return; }
+  w.document.write(`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><title>${pdfFilename}</title><style>body{font-family:'Noto Sans KR',sans-serif;padding:20px;font-size:13px}table{width:100%;border-collapse:collapse}td{padding:8px 6px;border-bottom:1px solid #eee}@media print{button{display:none}}</style></head><body><h3 style="margin-bottom:14px;">${table==='chojin'?'초진 접수':'대리 처방'} — ${name} (${dt})</h3>${content}<br><button onclick="window.print()" style="padding:10px 24px;background:#1a3a5c;color:white;border:none;border-radius:8px;cursor:pointer;font-size:14px;">🖨️ 인쇄 / PDF 저장</button></body></html>`);
+  w.document.close();
+}
+
+function openEditModal() {
+  if (!currentModalData) return;
+  const { row, table } = currentModalData;
+  const currentName = table === 'chojin' ? (row.name||'') : (row.visitor_name||'');
+  document.getElementById('edit-name-label').textContent = `(현재: ${currentName})`;
+  document.getElementById('edit-chart-label').textContent = `(현재: ${row.chart||''})`;
+  document.getElementById('edit-name-input').value = currentName;
+  document.getElementById('edit-chart-input').value = row.chart||'';
+  document.getElementById('edit-modal').style.display = 'block';
+}
+function closeEditModal() { document.getElementById('edit-modal').style.display = 'none'; }
+
+async function saveEdit() {
+  if (!currentModalData) return;
+  const { row, table } = currentModalData;
+  const newName = document.getElementById('edit-name-input').value.trim();
+  const newChart = document.getElementById('edit-chart-input').value.trim();
+  if (!newName || !newChart) { alert('이름과 차트번호를 모두 입력해주세요.'); return; }
+  if (!confirm(`수정하시겠습니까?\n이름: ${newName}\n차트번호: ${newChart}`)) return;
+  const nameField = table === 'chojin' ? 'name' : 'visitor_name';
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${encodeURIComponent(row.id)}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=representation' },
+      body: JSON.stringify({ [nameField]: newName, chart: newChart })
+    });
+    if (r.ok) { showToast('✅ 수정 완료!'); closeEditModal(); closeModal(); doSearch(); }
+    else { const err = await r.text(); alert(`❌ 수정 실패 (${r.status}):\n${err}`); }
+  } catch(e) { alert(`❌ 오류: ${e.message}`); }
+}
+
+function openDeleteModal() {
+  if (!currentModalData) return;
+  document.getElementById('delete-pw-input').value = '';
+  const { row, table } = currentModalData;
+  const name = table === 'chojin' ? (row.name||'') : (row.visitor_name||'');
+  const dt = new Date(row.created_at).toLocaleString('ko-KR');
+  document.getElementById('delete-target-info').textContent =
+    `${table==='chojin'?'초진':'대리'}  ${name}  차트 ${row.chart||'-'}  (${dt})`;
+  document.getElementById('delete-modal').style.display = 'block';
+}
+function closeDeleteModal() { document.getElementById('delete-modal').style.display = 'none'; }
+
+async function confirmDelete() {
+  if (!currentModalData) return;
+  const { row, table } = currentModalData;
+  const name = table === 'chojin' ? (row.name||'') : (row.visitor_name||'');
+  if (!confirm(`정말 삭제하시겠습니까?\n복구할 수 없습니다.\n\n대상: ${name} / 차트 ${row.chart||'-'}`)) return;
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${encodeURIComponent(row.id)}`, {
+      method: 'DELETE',
+      headers: { 'Authorization':`Bearer ${SUPA_ANON}`, 'apikey':SUPA_ANON, 'Prefer':'return=minimal' }
+    });
+    if (r.ok) { showToast('🗑️ 삭제 완료!'); closeDeleteModal(); closeModal(); doSearch(); }
+    else { const err = await r.text(); alert(`❌ 삭제 실패 (${r.status}):\n${err}`); }
+  } catch(e) { alert(`❌ 오류: ${e.message}`); }
 }
 
 </script>
